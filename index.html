@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sanjana Maini — Data & Business Analytics</title>
+<meta name="description" content="Sanjana Maini — CSE (AI/ML) graduate focused on business analysis and data analytics. Churn prediction, customer segmentation, KPI analysis, and AI-assisted tooling.">
+<meta property="og:title" content="Sanjana Maini — Data & Business Analytics">
+<meta property="og:description" content="Analytics projects with real, verified results: churn prediction (0.895 ROC-AUC), RFM segmentation on 540K+ transactions, LLM-powered resume parsing.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sanjanamaini.me">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav>
+    <span class="brand">SM</span>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Sanjana Maini</h1>
+    <p class="tagline">I turn messy data into decisions people can act on.</p>
+    <p class="hero-sub">
+      Computer Science (AI &amp; ML) graduate — SRM University AP, 2025 · GPA 8.66/10.
+      I build analytics that end in a recommendation, not just a chart: churn models tied to retention
+      actions, customer segments tied to strategy, and AI tooling that saves real screening time.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="#projects">See my work</a>
+      <a class="btn btn-outline" href="https://github.com/sanjanamaini">GitHub</a>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Selected projects</h2>
+    <p class="section-note">Every number below is reproducible from the linked repository.</p>
+
+    <div class="project-grid">
+      <article class="project">
+        <h3><a href="https://github.com/sanjanamaini/user-adoption-analysis">Student Churn Prediction &amp; Retention Analysis</a></h3>
+        <p class="metrics">32,593 students · 82% accuracy · 0.895 ROC-AUC</p>
+        <p>End-to-end churn pipeline on the Open University (OULAD) dataset: 13 engineered behavioral and
+        demographic features feeding a Random Forest classifier. Translated model output into 5 prioritized
+        retention recommendations — including flagging assessment non-submitters, who churn at 79.5% versus
+        a 31.2% baseline.</p>
+        <p class="stack">Python · Pandas · Scikit-Learn</p>
+      </article>
+
+      <article class="project">
+        <h3><a href="https://github.com/sanjanamaini/Pilot-Visual-Workflow-Agent">Pilot — Visual Workflow Agent</a></h3>
+        <p class="metrics">5-agent pipeline · Chrome extension + FastAPI backend</p>
+        <p>A working prototype that automates browser UI tasks from natural-language instructions: a Chrome
+        (Manifest V3) extension drives the page via <code>chrome.debugger</code> while a FastAPI backend runs an
+        interpret → plan → act → verify → narrate agent loop, each stage backed by Gemini vision/text calls.</p>
+        <p class="stack">Python · FastAPI · React · Gemini API</p>
+      </article>
+
+      <article class="project">
+        <h3><a href="https://github.com/sanjanamaini/business-kpi-dashboard">Retail Revenue &amp; RFM Segmentation</a></h3>
+        <p class="metrics">541,909 transactions · £8.9M revenue analyzed</p>
+        <p>Revenue, product, and country-level KPI analysis on the UCI Online Retail dataset, with
+        RFM (recency/frequency/monetary) customer segmentation to separate high-value repeat buyers
+        from one-off purchasers — the segments a retention budget should actually target.</p>
+        <p class="stack">Python · Pandas</p>
+      </article>
+
+      <article class="project">
+        <h3><a href="https://github.com/sanjanamaini/MyntraFashion-analysis">Fashion Catalog Segmentation</a></h3>
+        <p class="metrics">526K products · 4 K-Means segments</p>
+        <p>EDA and K-Means clustering on a 526K-row Myntra product dataset (117K after cleaning),
+        segmenting the catalog into Budget, Bestseller, Premium, and Risky product groups with distinct
+        pricing and rating profiles.</p>
+        <p class="stack">Python · Pandas · Scikit-Learn</p>
+      </article>
+
+      <article class="project">
+        <h3><a href="https://github.com/sanjanamaini/aptinova-pipeline">APTINOVA — AI Resume-Screening Pipeline</a></h3>
+        <p class="metrics">LLM-powered parsing · weighted candidate scoring</p>
+        <p>Resume-screening workflow that parses unstructured resumes into structured JSON using a locally-run
+        LLM (DeepSeek-R1 via Ollama), then scores candidates against role requirements with a weighted
+        rubric. Built with collaborators as a recruitment-tooling prototype.</p>
+        <p class="stack">Python · Ollama · MongoDB</p>
+      </article>
+
+      <article class="project">
+        <h3><a href="https://github.com/sanjanamaini/Credit-card-fraud-detection">Credit Card Fraud Detection</a></h3>
+        <p class="metrics">Precision 0.974 · F1 0.857 · MCC 0.863</p>
+        <p>Random Forest classifier on the standard Kaggle fraud dataset (0.17% fraud rate), evaluated with
+        the metrics that matter under extreme class imbalance — precision/recall and Matthews correlation,
+        not accuracy.</p>
+        <p class="stack">Python · Scikit-Learn</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="entry">
+        <div class="entry-head">
+          <h3>India Urban Data Exchange (IUDX)</h3>
+          <span class="dates">Jun – Aug 2023 · Bengaluru</span>
+        </div>
+        <p class="role">Summer Intern, Framework Development</p>
+        <p>Worked on a digital consent-management solution within a team building consent collection and
+        retrieval workflows for government data-sharing compliance.</p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>ScienceWaale</h3>
+          <span class="dates">Jul 2022 – Jan 2025 · Remote</span>
+        </div>
+        <p class="role">Co-Founder &amp; Content Creator</p>
+        <p>Created educational content on quantitative aptitude and logical reasoning — 200,000+ views,
+        1,800+ subscribers — using audience-engagement analysis with collaborating educators to steer
+        content strategy.</p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3>Student Council, SRM University AP</h3>
+          <span class="dates">2023 – 2024</span>
+        </div>
+        <p class="role">General Secretary</p>
+        <p>Coordinated student organizations and campus-wide initiatives, working directly with university
+        stakeholders on administrative operations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Analytics</h3>
+        <p>Exploratory Data Analysis · Statistical Analysis · KPI Analysis · Data Cleaning · Data Visualization</p>
+      </div>
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <p>Python · SQL · R · JavaScript · C++</p>
+      </div>
+      <div class="skill-group">
+        <h3>Machine Learning</h3>
+        <p>Scikit-Learn · TensorFlow · Regression · Classification · Clustering · LSTM</p>
+      </div>
+      <div class="skill-group">
+        <h3>Tools</h3>
+        <p>PowerBI · Advanced Excel · Pandas · NumPy · Git</p>
+      </div>
+    </div>
+    <p class="certs"><strong>Certifications:</strong> AI for Investments (IIT Kanpur) · Product Management ·
+    Foundations of Project Management · Foundations of R Software · E-Business</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Open to Business Analyst and data-analytics roles — happy to relocate.</p>
+    <div class="contact-links">
+      <a href="mailto:sanjana_maini@srmap.edu.in">sanjana_maini@srmap.edu.in</a>
+      <a href="https://github.com/sanjanamaini">github.com/sanjanamaini</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Sanjana Maini</p>
+</footer>
+
+</body>
+</html>
