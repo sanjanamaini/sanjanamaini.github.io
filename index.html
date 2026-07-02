@@ -2,177 +2,617 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sanjana Maini — Data & Business Analytics</title>
-<meta name="description" content="Sanjana Maini — CSE (AI/ML) graduate focused on business analysis and data analytics. Churn prediction, customer segmentation, KPI analysis, and AI-assisted tooling.">
-<meta property="og:title" content="Sanjana Maini — Data & Business Analytics">
-<meta property="og:description" content="Analytics projects with real, verified results: churn prediction (0.895 ROC-AUC), RFM segmentation on 540K+ transactions, LLM-powered resume parsing.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0e12">
+<meta name="description" content="Sanjana Maini — Business & Data Analytics. CSE (AI/ML) graduate turning messy data into decisions: churn prediction, customer segmentation, KPI dashboards.">
+<meta property="og:title" content="Sanjana Maini — Business & Data Analytics">
+<meta property="og:description" content="Analytics with verified results: churn model at 0.895 ROC-AUC on 32,593 students, £8.9M retail revenue decomposed, LLM-powered resume parsing.">
+<meta property="og:url" content="https://sanjanamaini.github.io">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://sanjanamaini.me">
-<link rel="stylesheet" href="styles.css">
+<title>Sanjana Maini — Business & Data Analytics</title>
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%230a0e12"/><path d="M8 22 L13 14 L18 18 L24 9" stroke="%232fd6ac" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300..700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sanjana Maini",
+  "url": "https://sanjanamaini.github.io",
+  "email": "mailto:sanjana_maini@srmap.edu.in",
+  "jobTitle": "Business & Data Analyst",
+  "alumniOf": "SRM University AP",
+  "sameAs": ["https://github.com/sanjanamaini"]
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e12;
+  --bg-elevated: #0f141a;
+  --bg-card: #131a21;
+  --border: #1e2830;
+  --border-hover: #2c3a45;
+  --text-primary: #e9ecee;
+  --text-secondary: #8d979e;
+  --text-muted: #566169;
+  --accent: #2fd6ac;
+  --accent-dim: #1d8a6f;
+  --accent-glow: rgba(47, 214, 172, 0.08);
+  --accent-2: #7aa5f8;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+::selection { background: var(--accent); color: var(--bg); }
+
+html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* Custom cursor */
+#cursor {
+  position: fixed; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); pointer-events: none; z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width .25s var(--ease-out), height .25s var(--ease-out), opacity .25s;
+  mix-blend-mode: screen;
+}
+#cursor.grow { width: 34px; height: 34px; opacity: .35; }
+@media (hover: none) { #cursor { display: none; } body { cursor: auto; } }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.2rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  background: rgba(10, 14, 18, 0.72);
+  border-bottom: 1px solid rgba(30, 40, 48, 0.6);
+}
+.nav-logo { font-family: var(--serif); font-size: 1.3rem; letter-spacing: -0.02em; }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 1.9rem; list-style: none; align-items: center; }
+.nav-links a {
+  font-family: var(--mono); font-size: .72rem; color: var(--text-secondary);
+  letter-spacing: .09em; text-transform: uppercase; position: relative; transition: color .3s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+  background: var(--accent); transition: width .4s var(--ease-out);
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a:hover::after { width: 100%; }
+@media (max-width: 720px) { .nav-links { display: none; } }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 2.5rem 4rem; max-width: 1160px; margin: 0 auto; position: relative;
+}
+.hero-label {
+  font-family: var(--mono); font-size: .72rem; color: var(--accent);
+  letter-spacing: .22em; text-transform: uppercase; margin-bottom: 1.6rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.hero-label::before { content: ''; width: 34px; height: 1px; background: var(--accent-dim); }
+h1 {
+  font-family: var(--serif); font-weight: 380; font-size: clamp(2.7rem, 7.5vw, 5.4rem);
+  line-height: 1.05; letter-spacing: -0.025em; max-width: 15ch;
+}
+h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  margin-top: 1.8rem; max-width: 56ch; color: var(--text-secondary); font-size: 1.02rem; font-weight: 340;
+}
+.hero-actions { margin-top: 2.6rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  font-family: var(--mono); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase;
+  padding: .8rem 1.6rem; border-radius: 6px; border: 1px solid var(--accent-dim);
+  color: var(--accent); background: transparent;
+  transition: all .35s var(--ease-out); display: inline-flex; align-items: center; gap: .5rem;
+}
+.btn:hover { background: var(--accent-glow); border-color: var(--accent); transform: translateY(-2px); }
+.btn.solid { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 500; }
+.btn.solid:hover { filter: brightness(1.1); }
+.hero-scroll {
+  position: absolute; bottom: 2.2rem; left: 2.5rem;
+  font-family: var(--mono); font-size: .68rem; color: var(--text-muted);
+  letter-spacing: .15em; text-transform: uppercase;
+  animation: drift 2.4s ease-in-out infinite;
+}
+@keyframes drift { 50% { transform: translateY(6px); } }
+
+/* NOW STRIP */
+.now-strip {
+  max-width: 1160px; margin: 0 auto 3rem; padding: 0 2.5rem;
+}
+.now-strip-inner {
+  border: 1px solid var(--border); border-left: 3px solid var(--accent);
+  background: var(--bg-elevated); border-radius: 8px; padding: 1.1rem 1.5rem;
+  font-size: .92rem; color: var(--text-secondary);
+}
+.now-strip-inner strong {
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent); margin-right: .9rem; font-weight: 500;
+}
+
+/* SECTIONS */
+section { max-width: 1160px; margin: 0 auto; padding: 5.5rem 2.5rem; }
+.section-label {
+  font-family: var(--mono); font-size: .7rem; color: var(--text-muted);
+  letter-spacing: .2em; margin-bottom: .8rem; display: flex; align-items: center; gap: .7rem;
+}
+.section-label .num { color: var(--accent); }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.section-title {
+  font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  letter-spacing: -0.02em; margin-bottom: 2.4rem;
+}
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ABOUT + STATS */
+.about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; }
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+.about-text p { color: var(--text-secondary); margin-bottom: 1.1rem; font-weight: 340; }
+.about-text p strong { color: var(--text-primary); font-weight: 550; }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+.stat-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.3rem 1.4rem; position: relative; overflow: hidden;
+  transition: border-color .35s, transform .35s var(--ease-out);
+}
+.stat-card:hover { border-color: var(--accent-dim); transform: translateY(-3px); }
+.stat-card::after {
+  content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+  background: linear-gradient(90deg, var(--accent), transparent 70%); opacity: .55;
+}
+.stat-number {
+  font-family: var(--serif); font-size: 1.9rem; color: var(--text-primary);
+  font-variant-numeric: tabular-nums; line-height: 1.2;
+}
+.stat-number .unit { font-size: 1.1rem; color: var(--accent); }
+.stat-label { font-family: var(--mono); font-size: .66rem; color: var(--text-muted); letter-spacing: .08em; text-transform: uppercase; margin-top: .4rem; }
+
+/* PROJECTS */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1.1rem; }
+.project-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.6rem; display: flex; flex-direction: column; gap: .85rem;
+  transition: border-color .35s, transform .35s var(--ease-out), box-shadow .35s;
+  will-change: transform;
+}
+.project-card:hover { border-color: var(--border-hover); box-shadow: 0 18px 44px rgba(0,0,0,.35); }
+.project-tag {
+  font-family: var(--mono); font-size: .64rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); display: flex; justify-content: space-between; align-items: center;
+}
+.project-tag .idx { color: var(--text-muted); }
+.project-card h3 { font-family: var(--serif); font-weight: 450; font-size: 1.25rem; letter-spacing: -0.01em; }
+.chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+.chip {
+  font-family: var(--mono); font-size: .66rem; padding: .22rem .6rem;
+  border: 1px solid var(--border); border-radius: 999px; color: var(--text-secondary);
+}
+.chip.metric { color: var(--accent); border-color: var(--accent-dim); background: var(--accent-glow); }
+.project-card p { font-size: .88rem; color: var(--text-secondary); font-weight: 340; flex: 1; }
+.card-links { display: flex; gap: 1.2rem; font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; }
+.card-links a { color: var(--text-secondary); border-bottom: 1px solid transparent; transition: color .3s, border-color .3s; }
+.card-links a:hover { color: var(--accent); border-color: var(--accent-dim); }
+
+/* MODAL */
+#modal-backdrop {
+  position: fixed; inset: 0; background: rgba(6, 9, 12, .78); backdrop-filter: blur(6px);
+  z-index: 500; display: none; align-items: center; justify-content: center; padding: 1.5rem;
+}
+#modal-backdrop.open { display: flex; }
+#modal {
+  background: var(--bg-elevated); border: 1px solid var(--border-hover); border-radius: 16px;
+  max-width: 640px; width: 100%; max-height: 84vh; overflow-y: auto; padding: 2.2rem;
+  animation: pop .35s var(--ease-out);
+}
+@keyframes pop { from { opacity: 0; transform: translateY(18px) scale(.98); } }
+#modal .project-tag { margin-bottom: .8rem; }
+#modal h3 { font-family: var(--serif); font-size: 1.7rem; font-weight: 450; margin-bottom: 1.2rem; }
+#modal h4 {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent); margin: 1.3rem 0 .45rem;
+}
+#modal p { color: var(--text-secondary); font-size: .92rem; font-weight: 340; }
+#modal .chips { margin-top: 1.4rem; }
+#modal-close {
+  float: right; font-family: var(--mono); font-size: .8rem; color: var(--text-muted);
+  background: none; border: 1px solid var(--border); border-radius: 6px; padding: .3rem .7rem;
+  cursor: none; transition: all .3s;
+}
+#modal-close:hover { color: var(--accent); border-color: var(--accent-dim); }
+#modal .modal-repo { display: inline-block; margin-top: 1.5rem; }
+
+/* EXPERIENCE */
+.timeline { border-left: 1px solid var(--border); margin-left: .4rem; padding-left: 2rem; display: flex; flex-direction: column; gap: 2.4rem; }
+.t-entry { position: relative; }
+.t-entry::before {
+  content: ''; position: absolute; left: calc(-2rem - 5px); top: .5rem;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--accent);
+}
+.t-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.t-head h3 { font-family: var(--serif); font-weight: 450; font-size: 1.2rem; }
+.t-dates { font-family: var(--mono); font-size: .7rem; color: var(--text-muted); letter-spacing: .08em; }
+.t-role { font-family: var(--mono); font-size: .74rem; color: var(--accent); letter-spacing: .06em; margin: .2rem 0 .5rem; }
+.t-entry p { color: var(--text-secondary); font-size: .9rem; font-weight: 340; max-width: 62ch; }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+.skill-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.3rem 1.4rem; transition: border-color .35s; }
+.skill-card:hover { border-color: var(--accent-dim); }
+.skill-card h3 { font-family: var(--mono); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; font-weight: 500; }
+.skill-card ul { list-style: none; }
+.skill-card li { font-size: .88rem; color: var(--text-secondary); padding: .18rem 0; font-weight: 340; }
+.certs-line { margin-top: 1.6rem; font-size: .86rem; color: var(--text-muted); }
+.certs-line strong { font-family: var(--mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); }
+
+/* EDUCATION */
+.edu-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem;
+  display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; align-items: baseline;
+}
+.edu-card h3 { font-family: var(--serif); font-weight: 450; font-size: 1.25rem; }
+.edu-card .deg { color: var(--text-secondary); font-size: .92rem; margin-top: .3rem; }
+.edu-gpa { font-family: var(--serif); font-size: 1.9rem; color: var(--accent); }
+.edu-gpa small { font-family: var(--mono); font-size: .64rem; color: var(--text-muted); display: block; letter-spacing: .1em; text-transform: uppercase; }
+
+/* CONTACT */
+.contact-section { text-align: center; padding-bottom: 7rem; }
+.contact-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.02em; margin-bottom: 1rem; }
+.contact-heading em { font-style: italic; color: var(--accent); }
+.contact-sub { color: var(--text-secondary); max-width: 46ch; margin: 0 auto 2.4rem; font-weight: 340; }
+.contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+footer {
+  border-top: 1px solid var(--border); padding: 1.6rem 2.5rem;
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  font-family: var(--mono); font-size: .68rem; color: var(--text-muted); letter-spacing: .08em;
+}
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <nav>
-    <span class="brand">SM</span>
-    <div class="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+<div id="cursor"></div>
+
+<nav>
+  <a class="nav-logo" href="#top">Sanjana<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">01 · About</a></li>
+    <li><a href="#projects">02 · Projects</a></li>
+    <li><a href="#experience">03 · Experience</a></li>
+    <li><a href="#skills">04 · Skills</a></li>
+    <li><a href="#contact">05 · Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-label">Business &amp; Data Analytics</div>
+  <h1>Turning messy data into <em>decisions</em> people can act on.</h1>
+  <p class="hero-sub">
+    I'm Sanjana — a Computer Science (AI &amp; ML) graduate who builds analytics that end in a
+    recommendation, not just a chart: churn models tied to retention actions, customer segments tied
+    to strategy, and AI tooling that saves real screening time.
+  </p>
+  <div class="hero-actions">
+    <a class="btn solid" href="#projects">See the work</a>
+    <a class="btn" href="https://github.com/sanjanamaini" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+  <div class="hero-scroll">Scroll ↓</div>
 </header>
 
-<main>
-  <section class="hero">
-    <h1>Sanjana Maini</h1>
-    <p class="tagline">I turn messy data into decisions people can act on.</p>
-    <p class="hero-sub">
-      Computer Science (AI &amp; ML) graduate — SRM University AP, 2025 · GPA 8.66/10.
-      I build analytics that end in a recommendation, not just a chart: churn models tied to retention
-      actions, customer segments tied to strategy, and AI tooling that saves real screening time.
-    </p>
-    <div class="hero-actions">
-      <a class="btn" href="#projects">See my work</a>
-      <a class="btn btn-outline" href="https://github.com/sanjanamaini">GitHub</a>
+<div class="now-strip reveal">
+  <div class="now-strip-inner">
+    <strong>Now</strong>
+    Running a 75-day sprint toward a Business Analyst role: daily SQL / Excel / PowerBI practice,
+    portfolio hardening, and case-study reps. Open to opportunities — and to relocation.
+  </div>
+</div>
+
+<section id="about" class="reveal">
+  <div class="section-label"><span class="num">01</span> About</div>
+  <h2 class="section-title">Analysis that survives scrutiny.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Every number on this site is <strong>reproducible from a public repository</strong>. That's the
+        standard I hold my work to: honest evaluation metrics, caveats stated up front, and findings
+        translated into what a decision-maker should actually do next.
+      </p>
+      <p>
+        My background is technical — B.Tech in CSE (AI &amp; ML), SRM University AP — but my interest
+        is the seam between data and business: why students churn, which customers deserve the
+        retention budget, which products discount heavily and still fail.
+      </p>
+      <p>
+        Before this: an internship at <strong>India Urban Data Exchange</strong> working on consent-management
+        frameworks, and co-founding <strong>ScienceWaale</strong>, an ed-content platform I helped grow past
+        200,000 views by treating audience engagement as an analytics problem.
+      </p>
     </div>
-  </section>
-
-  <section id="projects">
-    <h2>Selected projects</h2>
-    <p class="section-note">Every number below is reproducible from the linked repository.</p>
-
-    <div class="project-grid">
-      <article class="project">
-        <h3><a href="https://github.com/sanjanamaini/user-adoption-analysis">Student Churn Prediction &amp; Retention Analysis</a></h3>
-        <p class="metrics">32,593 students · 82% accuracy · 0.895 ROC-AUC</p>
-        <p>End-to-end churn pipeline on the Open University (OULAD) dataset: 13 engineered behavioral and
-        demographic features feeding a Random Forest classifier. Translated model output into 5 prioritized
-        retention recommendations — including flagging assessment non-submitters, who churn at 79.5% versus
-        a 31.2% baseline.</p>
-        <p class="stack">Python · Pandas · Scikit-Learn</p>
-      </article>
-
-      <article class="project">
-        <h3><a href="https://github.com/sanjanamaini/Pilot-Visual-Workflow-Agent">Pilot — Visual Workflow Agent</a></h3>
-        <p class="metrics">5-agent pipeline · Chrome extension + FastAPI backend</p>
-        <p>A working prototype that automates browser UI tasks from natural-language instructions: a Chrome
-        (Manifest V3) extension drives the page via <code>chrome.debugger</code> while a FastAPI backend runs an
-        interpret → plan → act → verify → narrate agent loop, each stage backed by Gemini vision/text calls.</p>
-        <p class="stack">Python · FastAPI · React · Gemini API</p>
-      </article>
-
-      <article class="project">
-        <h3><a href="https://github.com/sanjanamaini/business-kpi-dashboard">Retail Revenue &amp; RFM Segmentation</a></h3>
-        <p class="metrics">541,909 transactions · £8.9M revenue analyzed</p>
-        <p>Revenue, product, and country-level KPI analysis on the UCI Online Retail dataset, with
-        RFM (recency/frequency/monetary) customer segmentation to separate high-value repeat buyers
-        from one-off purchasers — the segments a retention budget should actually target.</p>
-        <p class="stack">Python · Pandas</p>
-      </article>
-
-      <article class="project">
-        <h3><a href="https://github.com/sanjanamaini/MyntraFashion-analysis">Fashion Catalog Segmentation</a></h3>
-        <p class="metrics">526K products · 4 K-Means segments</p>
-        <p>EDA and K-Means clustering on a 526K-row Myntra product dataset (117K after cleaning),
-        segmenting the catalog into Budget, Bestseller, Premium, and Risky product groups with distinct
-        pricing and rating profiles.</p>
-        <p class="stack">Python · Pandas · Scikit-Learn</p>
-      </article>
-
-      <article class="project">
-        <h3><a href="https://github.com/sanjanamaini/aptinova-pipeline">APTINOVA — AI Resume-Screening Pipeline</a></h3>
-        <p class="metrics">LLM-powered parsing · weighted candidate scoring</p>
-        <p>Resume-screening workflow that parses unstructured resumes into structured JSON using a locally-run
-        LLM (DeepSeek-R1 via Ollama), then scores candidates against role requirements with a weighted
-        rubric. Built with collaborators as a recruitment-tooling prototype.</p>
-        <p class="stack">Python · Ollama · MongoDB</p>
-      </article>
-
-      <article class="project">
-        <h3><a href="https://github.com/sanjanamaini/Credit-card-fraud-detection">Credit Card Fraud Detection</a></h3>
-        <p class="metrics">Precision 0.974 · F1 0.857 · MCC 0.863</p>
-        <p>Random Forest classifier on the standard Kaggle fraud dataset (0.17% fraud rate), evaluated with
-        the metrics that matter under extreme class imbalance — precision/recall and Matthews correlation,
-        not accuracy.</p>
-        <p class="stack">Python · Scikit-Learn</p>
-      </article>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-number" data-count="32593">0</div><div class="stat-label">Students analyzed — churn model</div></div>
+      <div class="stat-card"><div class="stat-number"><span data-count="0.895" data-dec="3">0</span></div><div class="stat-label">ROC-AUC, held-out test set</div></div>
+      <div class="stat-card"><div class="stat-number"><span class="unit">£</span><span data-count="8.9" data-dec="1">0</span><span class="unit">M</span></div><div class="stat-label">Retail revenue decomposed</div></div>
+      <div class="stat-card"><div class="stat-number"><span data-count="200">0</span><span class="unit">K+</span></div><div class="stat-label">Views — co-founded ed platform</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="timeline">
-      <div class="entry">
-        <div class="entry-head">
-          <h3>India Urban Data Exchange (IUDX)</h3>
-          <span class="dates">Jun – Aug 2023 · Bengaluru</span>
-        </div>
-        <p class="role">Summer Intern, Framework Development</p>
-        <p>Worked on a digital consent-management solution within a team building consent collection and
-        retrieval workflows for government data-sharing compliance.</p>
-      </div>
-      <div class="entry">
-        <div class="entry-head">
-          <h3>ScienceWaale</h3>
-          <span class="dates">Jul 2022 – Jan 2025 · Remote</span>
-        </div>
-        <p class="role">Co-Founder &amp; Content Creator</p>
-        <p>Created educational content on quantitative aptitude and logical reasoning — 200,000+ views,
-        1,800+ subscribers — using audience-engagement analysis with collaborating educators to steer
-        content strategy.</p>
-      </div>
-      <div class="entry">
-        <div class="entry-head">
-          <h3>Student Council, SRM University AP</h3>
-          <span class="dates">2023 – 2024</span>
-        </div>
-        <p class="role">General Secretary</p>
-        <p>Coordinated student organizations and campus-wide initiatives, working directly with university
-        stakeholders on administrative operations.</p>
-      </div>
-    </div>
-  </section>
+<section id="projects" class="reveal">
+  <div class="section-label"><span class="num">02</span> Projects</div>
+  <h2 class="section-title">Selected work.</h2>
+  <div class="project-grid" id="project-grid"></div>
+</section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h3>Analytics</h3>
-        <p>Exploratory Data Analysis · Statistical Analysis · KPI Analysis · Data Cleaning · Data Visualization</p>
-      </div>
-      <div class="skill-group">
-        <h3>Programming</h3>
-        <p>Python · SQL · R · JavaScript · C++</p>
-      </div>
-      <div class="skill-group">
-        <h3>Machine Learning</h3>
-        <p>Scikit-Learn · TensorFlow · Regression · Classification · Clustering · LSTM</p>
-      </div>
-      <div class="skill-group">
-        <h3>Tools</h3>
-        <p>PowerBI · Advanced Excel · Pandas · NumPy · Git</p>
-      </div>
+<section id="experience" class="reveal">
+  <div class="section-label"><span class="num">03</span> Experience</div>
+  <h2 class="section-title">Where I've worked.</h2>
+  <div class="timeline">
+    <div class="t-entry">
+      <div class="t-head"><h3>India Urban Data Exchange (IUDX)</h3><span class="t-dates">Jun — Aug 2023 · Bengaluru</span></div>
+      <div class="t-role">Summer Intern · Framework Development</div>
+      <p>Worked on a digital consent-management solution within a team building consent collection and
+      retrieval workflows for government data-sharing compliance.</p>
     </div>
-    <p class="certs"><strong>Certifications:</strong> AI for Investments (IIT Kanpur) · Product Management ·
-    Foundations of Project Management · Foundations of R Software · E-Business</p>
-  </section>
+    <div class="t-entry">
+      <div class="t-head"><h3>ScienceWaale</h3><span class="t-dates">Jul 2022 — Jan 2025 · Remote</span></div>
+      <div class="t-role">Co-Founder &amp; Content Creator</div>
+      <p>Built educational content on quantitative aptitude and logical reasoning — 200,000+ views and
+      1,800+ subscribers — using audience-engagement analysis with collaborating educators to steer
+      content strategy.</p>
+    </div>
+    <div class="t-entry">
+      <div class="t-head"><h3>Student Council, SRM University AP</h3><span class="t-dates">2023 — 2024</span></div>
+      <div class="t-role">General Secretary</div>
+      <p>Coordinated student organizations and campus-wide initiatives, working directly with university
+      stakeholders on administrative operations.</p>
+    </div>
+  </div>
+</section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Open to Business Analyst and data-analytics roles — happy to relocate.</p>
-    <div class="contact-links">
-      <a href="mailto:sanjana_maini@srmap.edu.in">sanjana_maini@srmap.edu.in</a>
-      <a href="https://github.com/sanjanamaini">github.com/sanjanamaini</a>
+<section id="skills" class="reveal">
+  <div class="section-label"><span class="num">04</span> Skills</div>
+  <h2 class="section-title">Tools I think in.</h2>
+  <div class="skills-grid">
+    <div class="skill-card"><h3>Analytics</h3><ul>
+      <li>Exploratory Data Analysis</li><li>Statistical Analysis</li><li>KPI Analysis</li><li>Data Cleaning</li><li>Data Visualization</li>
+    </ul></div>
+    <div class="skill-card"><h3>Programming</h3><ul>
+      <li>Python</li><li>SQL</li><li>R</li><li>JavaScript</li><li>C++</li>
+    </ul></div>
+    <div class="skill-card"><h3>Machine Learning</h3><ul>
+      <li>Scikit-Learn · TensorFlow</li><li>Regression · Classification</li><li>Clustering</li><li>LSTM</li>
+    </ul></div>
+    <div class="skill-card"><h3>Tools</h3><ul>
+      <li>PowerBI</li><li>Advanced Excel</li><li>Pandas · NumPy</li><li>Git</li>
+    </ul></div>
+  </div>
+  <p class="certs-line"><strong>Certifications</strong> &nbsp; AI for Investments (IIT Kanpur) · Product Management ·
+  Foundations of Project Management · Foundations of R Software · E-Business</p>
+
+  <div style="margin-top:3.5rem;">
+    <div class="section-label"><span class="num">04.5</span> Education</div>
+    <div class="edu-card">
+      <div>
+        <h3>SRM University AP</h3>
+        <div class="deg">B.Tech, Computer Science &amp; Engineering (AI &amp; ML) · 2021 — 2025</div>
+      </div>
+      <div class="edu-gpa">8.66<small>GPA / 10</small></div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
+
+<section id="contact" class="contact-section reveal">
+  <div class="section-label"><span class="num">05</span> Contact</div>
+  <h2 class="contact-heading">Let's find the <em>signal</em>.</h2>
+  <p class="contact-sub">
+    Open to Business Analyst and data-analytics roles — happy to relocate.
+    If you want someone who treats your KPIs like they matter, say hello.
+  </p>
+  <div class="contact-links">
+    <a class="btn solid" href="mailto:sanjana_maini@srmap.edu.in">Email me</a>
+    <a class="btn" href="https://github.com/sanjanamaini" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</section>
 
 <footer>
-  <p>© 2026 Sanjana Maini</p>
+  <span>© 2026 Sanjana Maini</span>
+  <span>Built by hand — no frameworks, every metric verified.</span>
 </footer>
 
+<div id="modal-backdrop" role="dialog" aria-modal="true">
+  <div id="modal">
+    <button id="modal-close" aria-label="Close">esc</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+/* ---------- Project data (all metrics verified from repo outputs) ---------- */
+const PROJECTS = [
+  {
+    tag: "Churn / Retention", name: "Student Churn Prediction",
+    repo: "https://github.com/sanjanamaini/user-adoption-analysis",
+    metrics: ["0.895 ROC-AUC", "32,593 students"],
+    stack: ["Python", "Pandas", "Scikit-Learn"],
+    blurb: "End-to-end churn pipeline on real online-university data, ending in five prioritized retention recommendations.",
+    challenge: "The Open University loses ~31% of students to withdrawal. Which ones, and what should intervention target first?",
+    approach: "Merged five OULAD tables (demographics, registration, assessments, clickstream), engineered 13 behavioral features, trained a class-balanced Random Forest, and validated on 6,519 held-out students.",
+    result: "82% accuracy, 0.895 ROC-AUC. The decisive finding: students who never submit an assessment churn at 79.5% vs the 31.2% baseline — an early-warning signal available within weeks of enrollment. Findings shipped as an impact-vs-effort priority matrix."
+  },
+  {
+    tag: "KPI Dashboard", name: "Retail Revenue & RFM Segmentation",
+    repo: "https://github.com/sanjanamaini/business-kpi-dashboard",
+    metrics: ["£8.9M analyzed", "51% rev from 14% of customers"],
+    stack: ["Python", "Pandas", "Inline SVG"],
+    blurb: "Full KPI decomposition of 541,909 retail transactions, plus a hand-built interactive dashboard — no chart library.",
+    challenge: "A UK online retailer's raw transaction log: where does revenue actually come from, and which customers deserve the retention budget?",
+    approach: "Cleaned to paid transactions, decomposed revenue by month/product/country, then segmented all 4,338 customers by RFM quartiles (recency, frequency, monetary). Built a self-contained interactive dashboard.html with hand-written SVG charts.",
+    result: "Champions — 14% of customers — drive 51% of revenue (£4.58M). The 646 'at risk' customers hold £1.04M of demonstrated spend: the clearest-payback retention campaign in the data."
+  },
+  {
+    tag: "Agentic AI", name: "Pilot — Visual Workflow Agent",
+    repo: "https://github.com/sanjanamaini/Pilot-Visual-Workflow-Agent",
+    metrics: ["5-agent pipeline", "Working prototype"],
+    stack: ["FastAPI", "React", "Chrome Ext", "Gemini"],
+    blurb: "A Chrome extension + backend that automates browser UI tasks from natural-language instructions.",
+    challenge: "Can an AI agent reliably operate a real browser UI from a plain-English instruction?",
+    approach: "A Manifest V3 Chrome extension drives pages via chrome.debugger while a FastAPI backend runs an interpret → plan → act → verify → narrate loop, each stage a Gemini vision/text call.",
+    result: "A working end-to-end prototype: instruction in, sequence of verified UI actions out, with the agent narrating what it did and why."
+  },
+  {
+    tag: "Segmentation", name: "Fashion Catalog Segmentation",
+    repo: "https://github.com/sanjanamaini/MyntraFashion-analysis",
+    metrics: ["526K products", "4 segments"],
+    stack: ["Python", "Scikit-Learn", "K-Means"],
+    blurb: "Clustering a fashion catalog into four actionable groups — including 18K products that discount hard and still rate poorly.",
+    challenge: "526K Myntra listings: which parts of the catalog make money, and which quietly damage the brand?",
+    approach: "Cleaned to 117K products, scaled price/discount/rating/review features, elbow-method K-Means (K=4). Explicitly caveated the dataset's capped review counts rather than reporting fake revenue.",
+    result: "Four segments with distinct strategies — the standout being 'Risky': 18,319 products averaging 3.26★ despite ~56% discounts. Discounting is masking a quality problem, not fixing it."
+  },
+  {
+    tag: "AI Tooling", name: "APTINOVA — Resume-Screening Pipeline",
+    repo: "https://github.com/sanjanamaini/aptinova-pipeline",
+    metrics: ["LLM parsing", "Weighted scoring"],
+    stack: ["Python", "Ollama", "MongoDB"],
+    blurb: "Recruitment tooling that parses unstructured resumes into structured data with a locally-run LLM.",
+    challenge: "Manual resume screening is slow and inconsistent. How much of it can structured extraction absorb?",
+    approach: "Pipeline pulls resumes from a MongoDB store, extracts text (PDF/DOCX), and uses DeepSeek-R1 via Ollama to emit structured JSON — skills, experience with durations, education, certifications — then scores candidates against role requirements with a weighted rubric.",
+    result: "A working prototype built with collaborators: unstructured resume in, structured candidate profile and score out."
+  },
+  {
+    tag: "Imbalanced ML", name: "Credit Card Fraud Detection",
+    repo: "https://github.com/sanjanamaini/Credit-card-fraud-detection",
+    metrics: ["0.974 precision", "0.863 MCC"],
+    stack: ["Python", "Scikit-Learn"],
+    blurb: "Fraud classification evaluated with the metrics that survive a 0.17% positive rate — where accuracy is a lie.",
+    challenge: "With 0.17% fraud, a model that predicts 'never fraud' scores 99.8% accuracy. What does honest evaluation look like?",
+    approach: "Random Forest on the standard Kaggle dataset, judged on precision/recall, F1, and Matthews correlation instead of accuracy.",
+    result: "Precision 0.974, recall 0.765, F1 0.857, MCC 0.863 — reported with the trade-off stated plainly: roughly 1 in 4 fraud cases still slips through, and that's the number that matters."
+  }
+];
+
+/* ---------- Render project cards ---------- */
+const grid = document.getElementById("project-grid");
+PROJECTS.forEach((p, i) => {
+  const card = document.createElement("article");
+  card.className = "project-card";
+  card.innerHTML = `
+    <div class="project-tag"><span>${p.tag}</span><span class="idx">0${i + 1}</span></div>
+    <h3>${p.name}</h3>
+    <div class="chips">${p.metrics.map(m => `<span class="chip metric">${m}</span>`).join("")}</div>
+    <p>${p.blurb}</p>
+    <div class="chips">${p.stack.map(s => `<span class="chip">${s}</span>`).join("")}</div>
+    <div class="card-links">
+      <a href="#" data-open="${i}">Case study →</a>
+      <a href="${p.repo}" target="_blank" rel="noopener">Repo ↗</a>
+    </div>`;
+  grid.appendChild(card);
+});
+
+/* ---------- Modal ---------- */
+const backdrop = document.getElementById("modal-backdrop");
+const modalContent = document.getElementById("modal-content");
+function openModal(i) {
+  const p = PROJECTS[i];
+  modalContent.innerHTML = `
+    <div class="project-tag"><span>${p.tag}</span></div>
+    <h3>${p.name}</h3>
+    <div class="chips">${p.metrics.map(m => `<span class="chip metric">${m}</span>`).join("")}</div>
+    <h4>The question</h4><p>${p.challenge}</p>
+    <h4>The approach</h4><p>${p.approach}</p>
+    <h4>The result</h4><p>${p.result}</p>
+    <div class="chips">${p.stack.map(s => `<span class="chip">${s}</span>`).join("")}</div>
+    <a class="btn modal-repo" href="${p.repo}" target="_blank" rel="noopener">View repository ↗</a>`;
+  backdrop.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal() {
+  backdrop.classList.remove("open");
+  document.body.style.overflow = "";
+}
+document.addEventListener("click", (e) => {
+  const opener = e.target.closest("[data-open]");
+  if (opener) { e.preventDefault(); openModal(+opener.dataset.open); }
+  if (e.target === backdrop || e.target.closest("#modal-close")) closeModal();
+});
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+/* ---------- Scroll reveal ---------- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+/* ---------- Count-up stats ---------- */
+function countUp(el) {
+  const target = parseFloat(el.dataset.count);
+  const dec = +(el.dataset.dec || 0);
+  const dur = 1400, t0 = performance.now();
+  (function tick(t) {
+    const k = Math.min(1, (t - t0) / dur);
+    const eased = 1 - Math.pow(1 - k, 3);
+    el.textContent = (target * eased).toLocaleString("en-IN", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    if (k < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+const statIO = new IntersectionObserver((entries) => {
+  entries.forEach((en) => { if (en.isIntersecting) { countUp(en.target); statIO.unobserve(en.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll("[data-count]").forEach((el) => statIO.observe(el));
+
+/* ---------- Card tilt ---------- */
+document.querySelectorAll(".project-card, .stat-card").forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    const r = card.getBoundingClientRect();
+    const rx = ((e.clientY - r.top) / r.height - 0.5) * -4;
+    const ry = ((e.clientX - r.left) / r.width - 0.5) * 4;
+    card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-3px)`;
+  });
+  card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+});
+
+/* ---------- Custom cursor ---------- */
+const cursor = document.getElementById("cursor");
+document.addEventListener("mousemove", (e) => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+});
+document.querySelectorAll("a, button, .project-card").forEach((el) => {
+  el.addEventListener("mouseenter", () => cursor.classList.add("grow"));
+  el.addEventListener("mouseleave", () => cursor.classList.remove("grow"));
+});
+</script>
 </body>
 </html>

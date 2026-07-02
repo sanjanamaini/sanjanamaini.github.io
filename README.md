@@ -1,9 +1,5 @@
-# sanjanamaini.me
+# sanjanamaini.github.io
 
-Personal portfolio site, published via GitHub Pages at [sanjanamaini.github.io](https://sanjanamaini.github.io). (The custom domain sanjanamaini.me is currently unconfigured — its DNS does not resolve; restore CNAME once the domain is fixed.)
+Personal portfolio site, published via GitHub Pages at [sanjanamaini.github.io](https://sanjanamaini.github.io).
 
-Static HTML/CSS — no build step, no JavaScript, no frameworks. Automatic light/dark theme via `prefers-color-scheme`.
-
-- `index.html` — the site (projects, experience, skills, contact)
-- `styles.css` — styling
-- `CNAME` — custom domain configuration for GitHub Pages
+A single self-contained `index.html` — no build step, no frameworks, no chart libraries. Custom-designed dark theme (data-teal accent, Fraunces + Inter + IBM Plex Mono), with scroll-reveal, count-up stat cards, project case-study modals, card tilt, and a custom cursor. Every metric on the site is reproducible from the linked repositories.
