@@ -165,7 +165,7 @@ def home_page():
     out.append(f'    <p class="cta"><a class="btn" href="#projects" data-track="cta_projects">See the projects</a> <a class="btn ghost" href="mailto:{s["email"]}" data-track="email">Email me</a></p>\n')
     out.append(f'    <p class="elsewhere"><a href="{s["linkedin"]}" data-track="linkedin" rel="me">LinkedIn</a> <a href="{s["github"]}" data-track="github" rel="me">GitHub</a></p>\n  </div>\n')
     if h.get("photo"):
-        out.append(f'  <figure class="portrait"><img src="{h["photo"]}" width="750" height="1000" alt="{esc(h["photo_alt"])}"></figure>\n')
+        out.append(f'  <figure class="portrait"><img src="{h["photo"]}" width="780" height="1040" alt="{esc(h["photo_alt"])}"></figure>\n')
     out.append('</section>\n')
     out.append('<section class="proof wide" aria-label="Headline findings">\n')
     for q in s["proof"]:
