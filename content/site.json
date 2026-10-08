@@ -1,0 +1,79 @@
+{
+ "base_url": "https://sanjanamaini.github.io",
+ "email": "sanjumaini18@gmail.com",
+ "linkedin": "https://www.linkedin.com/in/sanjanamaini/",
+ "github": "https://github.com/sanjanamaini",
+ "ga_measurement_id": "",
+ "description": "Data analysis in SQL, Power BI and Python. Each project leads with its finding and states what it does not show.",
+ "hero_title": "Findings first, with the limits stated",
+ "hero_text": "I am a computer science graduate (AI and ML) looking for data and BI analyst roles, or applied AI and automation roles. Each project below starts with its finding, then the question, the data, the method and what it does not show. When a number turns out wrong, the page says so.",
+ "about": [
+  "B.Tech in Computer Science and Engineering (AI and ML), SRM University AP, 2021 to 2025. I work on the seam between data and decisions: SQL, Power BI and Python on real datasets, evaluated the way the decision will actually be made.",
+  "I also build systems that act on decisions: Pilot, a five-agent prototype that operates a browser from a plain-English goal. Based in Vijayawada; open to Gurugram, Bengaluru, Hyderabad, Mumbai or remote work. Available from December 2026."
+ ],
+ "experience": [
+  {
+   "org": "ScienceWaale",
+   "when": "2022 to 2025",
+   "role": "Co-Founder",
+   "text": "Planned content with partner educators from audience data for a YouTube channel teaching quantitative aptitude and logical reasoning: [[59]] videos, [[200,000+]] views, [[1,700+]] subscribers."
+  },
+  {
+   "org": "India Urban Data Exchange",
+   "when": "Jun to Aug 2023",
+   "role": "Summer Intern",
+   "text": "Contributed to consent collection and retrieval features of a JavaScript consent-management framework for government data sharing."
+  },
+  {
+   "org": "Student Council, SRM University AP",
+   "when": "2022 to 2024",
+   "role": "General Secretary (2023 to 2024), events team (2022 to 2023)",
+   "text": "Coordinated student clubs, faculty and university leadership; initiatives reached [[20,000+]] students and attendees."
+  },
+  {
+   "org": "GUVI Geek Networks",
+   "when": "Nov 2021 to May 2022",
+   "role": "Campus Ambassador",
+   "text": "Wrote for the learner forum, answered peers' questions on Quora and proposed user-acquisition plans; named best performer of the month in February 2022."
+  }
+ ],
+ "education": "SRM University, AP: B.Tech in Computer Science and Engineering (AI and ML), Aug 2021 to Aug 2025, CGPA [[8.66]] out of 10.",
+ "skills": [
+  [
+   "Languages",
+   "Python (pandas, NumPy), SQL (window functions, CTEs), R, JavaScript, C++"
+  ],
+  [
+   "Data quality and analysis",
+   "Data validation, data cleaning, exploratory data analysis, trend and anomaly detection, business rules documentation"
+  ],
+  [
+   "BI and Excel",
+   "Power BI (DAX), Excel (pivot tables, charts, slicers)"
+  ],
+  [
+   "ML and AI",
+   "scikit-learn, LLM agents (Gemini API), FastAPI"
+  ],
+  [
+   "Methods",
+   "time-based validation, leakage testing, empirical Bayes, survival analysis, expected-loss decision rules"
+  ]
+ ],
+ "certifications": "Product Matters 5.0, E-Cell IIT Guwahati (Certificate of Merit, top 15%). NPTEL Foundations of R Software, IIT Kanpur (Elite + Gold, 94%). Data Analytics Job Simulation, Deloitte (Forage). IBM Exploratory Data Analysis for Machine Learning. Google Foundations of Project Management.",
+ "contact_text": "Open to data and BI analyst roles and applied AI or automation roles, in Gurugram, Bengaluru, Hyderabad, Mumbai or remote. The quickest way to reach me is email.",
+ "og": {
+  "eyebrow": "Sanjana Maini",
+  "big": "Findings first, with the limits stated: data analysis in SQL, Power BI and Python",
+  "left": "sanjanamaini.github.io",
+  "right": "SQL · Power BI · Python",
+  "size": 62
+ },
+ "project_order": [
+  "layoff",
+  "retail",
+  "withdrawal",
+  "fraud",
+  "pilot"
+ ]
+}

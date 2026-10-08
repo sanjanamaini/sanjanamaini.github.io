@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A UK wholesaler&#x27;s revenue was £8.25M, not £8.91M: cancellations had been counted as sales | Sanjana Maini</title>
+<meta name="description" content="541,909 invoice lines reconciled to 8.25M GBP of net revenue, RFM segments tested on the next quarter, and a ranking contest for retention targeting.">
+<link rel="canonical" href="https://sanjanamaini.github.io/retail/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Sanjana Maini">
+<meta property="og:title" content="A UK wholesaler&#x27;s revenue was £8.25M, not £8.91M: cancellations had been counted as sales | Sanjana Maini">
+<meta property="og:description" content="541,909 invoice lines reconciled to 8.25M GBP of net revenue, RFM segments tested on the next quarter, and a ranking contest for retention targeting.">
+<meta property="og:url" content="https://sanjanamaini.github.io/retail/">
+<meta property="og:image" content="https://sanjanamaini.github.io/og/retail.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF8F4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E6B60'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='white'%3ESM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wide">
+  <a class="mark" href="../">Sanjana Maini</a>
+  <nav aria-label="Main"><a href="../#projects">Projects</a><a href="../#about">About</a><a href="../#contact">Contact</a><button class="theme" type="button" id="t" aria-label="Switch light or dark mode">Light / dark</button></nav>
+</div></header>
+<main class="wrap">
+  <p class="crumb"><a href="../#projects">Projects</a> / Retail revenue and customer value</p>
+  <span class="status">Complete &middot; numbers checked 2026-10-08</span>
+  <h1>A UK wholesaler&#x27;s revenue was <span class="num">£8.25M</span>, not £8.91M: cancellations had been counted as sales</h1>
+  <p class="standfirst">A year of invoices (<span class="num">541,909</span> lines) reconciles to <span class="num">£8.25M</span> of net merchandise revenue from <span class="num">4,324</span> customers. A first pass reported <span class="num">£8.91M</span>, <span class="num">8%</span> too high, because cancelled purchases, postage and fees, duplicate rows and manual corrections had not been taken out. The bridge between the two figures closes to the penny.</p>
+  <dl class="facts">
+    <div><dt>Invoice lines</dt><dd>541,909</dd></div>
+    <div><dt>Net revenue</dt><dd>£8.25M</dd></div>
+    <div><dt>First-pass overstatement</dt><dd>£661K</dd></div>
+    <div><dt>Customers</dt><dd>4,324</dd></div>
+  </dl>
+  <h2><span class="n">01</span>The question</h2>
+  <p>Which customers deserve the retention budget? That needs a revenue figure you can trust first, then a segmentation, then a test of whether the segments predict anything.</p>
+  <h2><span class="n">02</span>The data</h2>
+  <p>The UCI Online Retail dataset: a UK online wholesaler&#x27;s invoices from 1 December 2010 to 9 December 2011 (Chen, Sain and Guo 2012, CC BY 4.0). Many customers are themselves retailers.</p>
+  <h2><span class="n">03</span>The method</h2>
+  <p>Revenue is cleaned with a ledger that accounts for every pound: cancellations are netted against the purchase they reverse (matched on customer, product and unit price), postage, fees and adjustments are removed from merchandise revenue, and exact duplicate rows are dropped.</p>
+  <p>Customers are then scored by recency, frequency and monetary value (RFM) on data up to 9 September 2011 and checked against the next 13 weeks, which the scoring never saw. <span class="num">89.5%</span> of Champions bought again, against <span class="num">58.4%</span> of &quot;At risk&quot; customers. The labels carry signal, but &quot;At risk&quot; overstates the risk: in a wholesale business a quiet spell is often just the gap between orders.</p>
+  <p>For a retention campaign, four ways of ranking customers were compared. The top 20% by plain past spend held <span class="num">67.7%</span> of next-quarter spend; a probabilistic value model (BG/NBD with Gamma-Gamma, written from its likelihoods) held <span class="num">69.3%</span>, a small gain for a much more complex method.</p>
+  <figure>
+    <div class="plate"><img src="../assets/fig/retail-waterfall.png" width="1342" height="557" alt="Waterfall chart from the first-pass revenue of 8.91 million pounds down to net revenue of 8.25 million, removing duplicates, postage and fees, cancelled purchases and manual corrections."></div>
+    <figcaption><strong>Figure.</strong> From the first pass (£8.91M) to net merchandise revenue (£8.25M): duplicate rows -£24K, postage, fees and adjustments -£150K, cancelled purchases -£448K, manual corrections -£39K. Data: results/metrics.json.</figcaption>
+  </figure>
+  <h2><span class="n">04</span>What this does not show</h2>
+  <div class="limits"><ul>
+    <li>One year of data, so no seasonality can be learned; the analysis is of revenue, not margin.</li>
+    <li><span class="num">135,080</span> lines without a customer ID (£1.45M) sit outside the customer view.</li>
+    <li>The December 2010 cohort includes established customers, so the cohort charts start optimistic.</li>
+    <li>The customer-value model is a likelihood fit to one wholesaler; it says nothing about other kinds of retailer.</li>
+  </ul></div>
+  <h2><span class="n">05</span>Figures this page replaces</h2>
+  <p>The first version of this analysis reported <span class="num">£8.91M</span> of revenue from <span class="num">4,338</span> customers. It dropped cancelled invoices but not the purchases they cancelled. Those figures are retired. In the corrected data, Champions hold <span class="num">53.6%</span> of net revenue.</p>
+  <h2><span class="n">06</span>Reproduce it</h2>
+  <pre>python -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt
+cd notebooks &amp;&amp; ../.venv/bin/jupyter nbconvert --to notebook --execute --inplace customer_value.ipynb
+cd .. &amp;&amp; .venv/bin/python build_dashboard.py</pre>
+  <p class="note">Source and code: <a href="https://github.com/sanjanamaini/business-kpi-dashboard?utm_source=site&amp;utm_medium=project_page&amp;utm_campaign=retail" data-track="repo" data-project="retail">repository</a>. Data: UCI Online Retail (CC BY 4.0).</p>
+</main>
+<footer class="site"><div class="wrap">
+  <a href="mailto:sanjumaini18@gmail.com" data-track="email">sanjumaini18@gmail.com</a> &middot;
+  <a href="https://www.linkedin.com/in/sanjanamaini/" data-track="linkedin" rel="me">LinkedIn</a> &middot;
+  <a href="../">All projects</a>
+</div></footer>
+<script src="../assets/site.js" defer></script>
+</body></html>

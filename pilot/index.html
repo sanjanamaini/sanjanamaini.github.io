@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Five LLM agents operate a browser from a plain-English goal, by reading the screen | Sanjana Maini</title>
+<meta name="description" content="Pilot is a working prototype: five Gemini-powered agents that carry out a goal in a real browser by looking at screenshots, with a verifier that triggers replanning.">
+<link rel="canonical" href="https://sanjanamaini.github.io/pilot/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Sanjana Maini">
+<meta property="og:title" content="Five LLM agents operate a browser from a plain-English goal, by reading the screen | Sanjana Maini">
+<meta property="og:description" content="Pilot is a working prototype: five Gemini-powered agents that carry out a goal in a real browser by looking at screenshots, with a verifier that triggers replanning.">
+<meta property="og:url" content="https://sanjanamaini.github.io/pilot/">
+<meta property="og:image" content="https://sanjanamaini.github.io/og/pilot.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF8F4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E6B60'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='white'%3ESM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wide">
+  <a class="mark" href="../">Sanjana Maini</a>
+  <nav aria-label="Main"><a href="../#projects">Projects</a><a href="../#about">About</a><a href="../#contact">Contact</a><button class="theme" type="button" id="t" aria-label="Switch light or dark mode">Light / dark</button></nav>
+</div></header>
+<main class="wrap">
+  <p class="crumb"><a href="../#projects">Projects</a> / Pilot</p>
+  <span class="status">Prototype &middot; numbers checked 2026-10-08</span>
+  <h1>Five LLM agents operate a browser from a plain-English goal, by reading the screen</h1>
+  <p class="standfirst">Pilot types, clicks and scrolls in a real browser to carry out a goal such as &quot;Move this lead to Proposal Sent&quot;, purely by looking at screenshots: no per-app API and no brittle page selectors. A verifier agent checks every step and sends a failed one back to the planner. It is a working prototype, and this page says plainly what it does not yet prove.</p>
+  <dl class="facts">
+    <div><dt>Agents</dt><dd>5</dd></div>
+    <div><dt>Reads the screen with</dt><dd>Gemini vision</dd></div>
+    <div><dt>Replans per goal</dt><dd>up to 3</dd></div>
+    <div><dt>Status</dt><dd>Prototype</dd></div>
+  </dl>
+  <h2><span class="n">01</span>The question</h2>
+  <p>Can an agent operate any web app it can see, with no integration work for each one?</p>
+  <h2><span class="n">02</span>The method</h2>
+  <p>Five agents run as a loop. A screen interpreter turns a screenshot into structured UI state; a planner breaks the goal into steps; an action agent chooses a click, keystroke or scroll with pixel coordinates; a verifier looks at a fresh screenshot and either passes the step or triggers replanning; a narrator describes each step in the side panel.</p>
+  <p>It is built with a FastAPI backend (REST and WebSocket) and a Chrome Manifest V3 side-panel extension that dispatches real mouse and keyboard events through Chrome&#x27;s debugger protocol. Each agent has its own prompt and returns JSON.</p>
+  <figure>
+    <div class="plate diagram-plate"><svg viewBox="0 0 760 250" role="img" aria-labelledby="pt pd" class="diagram">
+<title id="pt">The Pilot agent loop</title>
+<desc id="pd">A goal and a screenshot go to a screen interpreter, then a planner, then an action agent that acts in the browser; a verifier checks a fresh screenshot and either sends the run back to the planner or on to the narrator.</desc>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
+<g font-family="var(--sans)" font-size="14" fill="var(--ink)">
+<g stroke="var(--rule)" fill="var(--surface)" stroke-width="1.2">
+<rect x="10" y="40" width="130" height="56" rx="6"/><rect x="170" y="40" width="130" height="56" rx="6"/>
+<rect x="330" y="40" width="130" height="56" rx="6"/><rect x="490" y="40" width="120" height="56" rx="6"/>
+<rect x="630" y="40" width="120" height="56" rx="6"/></g>
+<g text-anchor="middle"><text x="75" y="64">Screen</text><text x="75" y="82">interpreter</text>
+<text x="235" y="73">Planner</text><text x="395" y="64">Action</text><text x="395" y="82">agent</text>
+<text x="550" y="73">Verifier</text><text x="690" y="73">Narrator</text></g>
+<g stroke="var(--muted)" stroke-width="1.5" fill="none" marker-end="url(#ar)">
+<path d="M140 68H168"/><path d="M300 68H328"/><path d="M460 68H488"/><path d="M610 68H628"/></g>
+<path d="M550 98V170H235V100" stroke="var(--accent)" stroke-width="1.5" fill="none" marker-end="url(#ar)" stroke-dasharray="5 4"/>
+<text x="392" y="190" text-anchor="middle" fill="var(--accent)" font-size="13">failed check: replan (capped at 3 per goal)</text>
+<text x="75" y="130" text-anchor="middle" fill="var(--muted)" font-size="12">screenshot in</text>
+<text x="395" y="130" text-anchor="middle" fill="var(--muted)" font-size="12">click, type, scroll</text>
+<text x="550" y="130" text-anchor="middle" fill="var(--muted)" font-size="12">fresh screenshot</text>
+<text x="10" y="232" fill="var(--muted)" font-size="12">Goal in plain English, in a Chrome side panel. Gemini vision reads every screenshot.</text>
+</g></svg></div>
+    <figcaption><strong>Figure.</strong> The agent loop, drawn from the code in backend/agents. A failed verification returns to the planner, up to three times per goal.</figcaption>
+  </figure>
+  <h2><span class="n">03</span>Reliability so far</h2>
+  <p>A code review on 2026-10-07 fixed three faults: replanning had no limit (it is now capped at <span class="num">3</span> per goal), clicks on scaled displays landed at a multiple of the intended point (the extension now divides by the device pixel ratio), and a click outside the screenshot now fails the step instead of firing. <span class="num">11</span> tests, with every model call stubbed, cover the loop.</p>
+  <h2><span class="n">04</span>What this does not show</h2>
+  <div class="limits"><ul>
+    <li>It is a prototype: session state is in memory, and the Terraform and Docker files are deployment scaffolding, not a verified live deployment.</li>
+    <li>There is no measured success rate. The repository holds a reliability model, but every rate in it is an assumption, not a measurement of Pilot.</li>
+    <li>That model suggests the verifier sets the ceiling: in a six-step base case, about one run in ten that Pilot reports as complete would be wrong, whatever the replan cap.</li>
+    <li>Every step costs a Gemini vision call, and reliability depends on the verifier catching mis-clicks.</li>
+  </ul></div>
+  <h2><span class="n">05</span>Reproduce it</h2>
+  <pre>cd backend &amp;&amp; pip install -r requirements.txt
+export GOOGLE_API_KEY=your_key_here &amp;&amp; python main.py
+cd ../extension &amp;&amp; npm install &amp;&amp; npm run build   # load extension/dist/ unpacked in Chrome</pre>
+  <p class="note">Source and code: <a href="https://github.com/sanjanamaini/Pilot-Visual-Workflow-Agent?utm_source=site&amp;utm_medium=project_page&amp;utm_campaign=pilot" data-track="repo" data-project="pilot">repository</a>. Built on the Gemini API and Chrome&#x27;s extension platform.</p>
+</main>
+<footer class="site"><div class="wrap">
+  <a href="mailto:sanjumaini18@gmail.com" data-track="email">sanjumaini18@gmail.com</a> &middot;
+  <a href="https://www.linkedin.com/in/sanjanamaini/" data-track="linkedin" rel="me">LinkedIn</a> &middot;
+  <a href="../">All projects</a>
+</div></footer>
+<script src="../assets/site.js" defer></script>
+</body></html>

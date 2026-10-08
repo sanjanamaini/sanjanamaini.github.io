@@ -1,0 +1,174 @@
+{
+ "slug": "retail",
+ "crumb": "Retail revenue and customer value",
+ "status": "Complete",
+ "stack": "Python, pandas, SciPy",
+ "title": "A UK wholesaler's revenue was [[£8.25M]], not £8.91M: cancellations had been counted as sales",
+ "hub": "A UK wholesaler's revenue was [[£8.25M]], not £8.91M: cancellations had been counted as sales",
+ "description": "541,909 invoice lines reconciled to 8.25M GBP of net revenue, RFM segments tested on the next quarter, and a ranking contest for retention targeting.",
+ "standfirst": "A year of invoices ([[541,909]] lines) reconciles to [[£8.25M]] of net merchandise revenue from [[4,324]] customers. A first pass reported [[£8.91M]], [[8%]] too high, because cancelled purchases, postage and fees, duplicate rows and manual corrections had not been taken out. The bridge between the two figures closes to the penny.",
+ "facts": [
+  [
+   "Invoice lines",
+   "541,909"
+  ],
+  [
+   "Net revenue",
+   "£8.25M"
+  ],
+  [
+   "First-pass overstatement",
+   "£661K"
+  ],
+  [
+   "Customers",
+   "4,324"
+  ]
+ ],
+ "sections": [
+  {
+   "h": "The question",
+   "p": [
+    "Which customers deserve the retention budget? That needs a revenue figure you can trust first, then a segmentation, then a test of whether the segments predict anything."
+   ]
+  },
+  {
+   "h": "The data",
+   "p": [
+    "The UCI Online Retail dataset: a UK online wholesaler's invoices from 1 December 2010 to 9 December 2011 (Chen, Sain and Guo 2012, CC BY 4.0). Many customers are themselves retailers."
+   ]
+  },
+  {
+   "h": "The method",
+   "p": [
+    "Revenue is cleaned with a ledger that accounts for every pound: cancellations are netted against the purchase they reverse (matched on customer, product and unit price), postage, fees and adjustments are removed from merchandise revenue, and exact duplicate rows are dropped.",
+    "Customers are then scored by recency, frequency and monetary value (RFM) on data up to 9 September 2011 and checked against the next 13 weeks, which the scoring never saw. [[89.5%]] of Champions bought again, against [[58.4%]] of \"At risk\" customers. The labels carry signal, but \"At risk\" overstates the risk: in a wholesale business a quiet spell is often just the gap between orders.",
+    "For a retention campaign, four ways of ranking customers were compared. The top 20% by plain past spend held [[67.7%]] of next-quarter spend; a probabilistic value model (BG/NBD with Gamma-Gamma, written from its likelihoods) held [[69.3%]], a small gain for a much more complex method."
+   ],
+   "figure": {
+    "file": "retail-waterfall.png",
+    "w": 1342,
+    "h": 557,
+    "alt": "Waterfall chart from the first-pass revenue of 8.91 million pounds down to net revenue of 8.25 million, removing duplicates, postage and fees, cancelled purchases and manual corrections.",
+    "caption": "From the first pass (£8.91M) to net merchandise revenue (£8.25M): duplicate rows -£24K, postage, fees and adjustments -£150K, cancelled purchases -£448K, manual corrections -£39K. Data: results/metrics.json."
+   }
+  }
+ ],
+ "limits": [
+  "One year of data, so no seasonality can be learned; the analysis is of revenue, not margin.",
+  "[[135,080]] lines without a customer ID (£1.45M) sit outside the customer view.",
+  "The December 2010 cohort includes established customers, so the cohort charts start optimistic.",
+  "The customer-value model is a likelihood fit to one wholesaler; it says nothing about other kinds of retailer."
+ ],
+ "changes": {
+  "h": "Figures this page replaces",
+  "p": [
+   "The first version of this analysis reported [[£8.91M]] of revenue from [[4,338]] customers. It dropped cancelled invoices but not the purchases they cancelled. Those figures are retired. In the corrected data, Champions hold [[53.6%]] of net revenue."
+  ]
+ },
+ "reproduce": "python -m venv .venv && .venv/bin/pip install -r requirements.txt\ncd notebooks && ../.venv/bin/jupyter nbconvert --to notebook --execute --inplace customer_value.ipynb\ncd .. && .venv/bin/python build_dashboard.py",
+ "repo": "business-kpi-dashboard",
+ "credit": "Data: UCI Online Retail (CC BY 4.0).",
+ "copy": [
+  {
+   "from": "business-kpi-dashboard/results/figures/revenue_waterfall.png",
+   "to": "retail-waterfall.png"
+  }
+ ],
+ "og": {
+  "eyebrow": "Retail revenue and customer value · Python",
+  "big": "A UK wholesaler's revenue was £8.25M, not £8.91M",
+  "left": "sanjanamaini.github.io/retail",
+  "right": "541,909 invoice lines",
+  "image": "retail-waterfall.png",
+  "size": 54
+ },
+ "checks": [
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "raw_rows",
+   "expect": 541909
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "clean_revenue",
+   "expect": 8250372.16,
+   "tol": 1
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "v1_revenue",
+   "expect": 8911407.9,
+   "tol": 1
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "clean_customers",
+   "expect": 4324
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "v1_customers",
+   "expect": 4338
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "bridge/duplicates",
+   "expect": 24199,
+   "tol": 1
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "bridge/service_lines",
+   "expect": 149981,
+   "tol": 1
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "bridge/cancelled_purchases",
+   "expect": 447848,
+   "tol": 1
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "bridge/manual_corrections",
+   "expect": 39008,
+   "tol": 1
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "no_id_rows",
+   "expect": 135080
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "segment_validation/Champions/bought_again",
+   "expect": 0.8954,
+   "tol": 0.0006
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "segment_validation/At risk/bought_again",
+   "expect": 0.5844,
+   "tol": 0.0006
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "segments_v2/Champions/share",
+   "expect": 0.5358,
+   "tol": 0.0006
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "contest/past spend/top20_capture",
+   "expect": 0.677,
+   "tol": 0.0006
+  },
+  {
+   "file": "business-kpi-dashboard/results/metrics.json",
+   "path": "contest/NBD x Gamma-Gamma/top20_capture",
+   "expect": 0.6928,
+   "tol": 0.0006
+  }
+ ]
+}

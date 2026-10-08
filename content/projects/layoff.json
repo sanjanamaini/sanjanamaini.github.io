@@ -1,0 +1,173 @@
+{
+ "slug": "layoff",
+ "crumb": "Layoff repeat-risk",
+ "status": "Complete",
+ "stack": "SQL, Power BI, survival analysis",
+ "title": "About 1 in 10 companies that cut jobs cut again within six months",
+ "hub": "About 1 in 10 companies that cut jobs cut again within six months",
+ "description": "17 of 164 companies that announced a layoff cut again within six months. SQL, Power BI and survival analysis on 442 announcements, with the limits stated.",
+ "standfirst": "Of 164 companies whose first layoff in the data was at least six months old, [[17]] laid people off again inside six months ([[10.4%]]). Counting only companies still operating, it is [[17 of 152]], or [[11.2%]], with a 95% interval of [[7.1% to 17.2%]].",
+ "facts": [
+  [
+   "Announcements analysed",
+   "442"
+  ],
+  [
+   "Companies followed six months",
+   "164"
+  ],
+  [
+   "Cut again",
+   "17"
+  ],
+  [
+   "Share",
+   "10.4%"
+  ]
+ ],
+ "sections": [
+  {
+   "h": "The question",
+   "p": [
+    "Companies know why they cut jobs, but the people on the other side of the decision cannot ask them whether another round is coming: employees of a company that just announced a layoff, job seekers weighing an offer from it, and lenders. A company does not publish \"we will probably cut again\", so the repeat rate is information none of them can get from the company itself."
+   ]
+  },
+  {
+   "h": "The data",
+   "p": [
+    "442 layoff announcements from September 2025 to September 2026, taken from the public layoffs.fyi table by transcribing the site's own print view (the site disables bulk download). The raw data is not republished here; the repository holds the queries, the aggregates and a written log of every decision."
+   ]
+  },
+  {
+   "h": "The method",
+   "p": [
+    "Eight saved SQL queries in SQLite. Duplicate reports of one layoff are merged into rounds with a 14-day rule. Every company is followed for the same fixed six months, so a recent layoff cannot drag the rate down. A Power BI dashboard (one-to-many data model, a DAX measure and a company lookup) lets a reader check any company's record.",
+    "The same question is then answered as a survival analysis in Python, which follows all [[330]] operating companies until a second round or the end of the data: [[4.8%]] by three months and [[10.2%]] by six (interval [[6.9% to 14.8%]])."
+   ],
+   "figure": {
+    "file": "layoff-km.png",
+    "w": 1102,
+    "h": 588,
+    "alt": "Kaplan-Meier curve of the share of companies that cut again, rising from 0 to about 27 percent over 12 months, with the fixed-window estimates at 3, 6 and 9 months close to the curve.",
+    "caption": "Share of companies that have cut again, by months since the first layoff round. Line: Kaplan-Meier estimate from every company; band: 95% interval; dots: the fixed-window estimates, each from a different set of companies. Data: results/metrics.json."
+   }
+  }
+ ],
+ "limits": [
+  "Only [[39]] companies had a second round, so the data supports \"repeat layoffs are fairly common\", not fine comparisons between industries.",
+  "It shows repeat cuts are common, not that they predict a company failing: there is no outcome data.",
+  "layoffs.fyi leans toward tech companies and companies that make the news.",
+  "The window is the last 12 months: a study of company behaviour in this period, not over companies' whole history."
+ ],
+ "changes": {
+  "h": "Which number is the headline",
+  "p": [
+   "Closed companies cannot cut again, and [[12]] of the 164 closed after their first round. The headline, 10.4%, includes them; the 11.2% above excludes them. Both are shown. The rate is unchanged when duplicate reports are merged at 14 or 30 days and lower at 90 days, because 90 days merges real second rounds."
+  ]
+ },
+ "reproduce": "python sql/load_layoffs.py   # builds sql/layoffs.db from your copy of the data\n# then run sql/queries/01 to 08 in DB Browser for SQLite",
+ "repo": "layoff-repeat-risk",
+ "credit": "Data credit: layoffs.fyi.",
+ "copy": [
+  {
+   "from": "layoff-repeat-risk/results/figures/km_repeat.png",
+   "to": "layoff-km.png"
+  }
+ ],
+ "og": {
+  "eyebrow": "Layoff repeat-risk · SQL, Power BI",
+  "big": "About 1 in 10 companies that cut jobs cut again within six months",
+  "left": "sanjanamaini.github.io/layoff",
+  "right": "17 of 164 · 442 announcements",
+  "image": "layoff-km.png"
+ },
+ "checks": [
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "events",
+   "expect": 442
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "sql_headline/0",
+   "expect": 164
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "sql_headline/1",
+   "expect": 17
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "sql_headline/2",
+   "expect": 10.4
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "headline_open_k",
+   "expect": 17
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "headline_open_n",
+   "expect": 152
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "headline_open",
+   "expect": 0.112,
+   "tol": 0.0005
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "headline_open_ci/0",
+   "expect": 0.071,
+   "tol": 0.0005
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "headline_open_ci/1",
+   "expect": 0.172,
+   "tol": 0.0005
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "km_companies",
+   "expect": 330
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "km/90/cut_again",
+   "expect": 0.048,
+   "tol": 0.0005
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "km/180/cut_again",
+   "expect": 0.102,
+   "tol": 0.0005
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "km/180/lo",
+   "expect": 0.069,
+   "tol": 0.0005
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "km/180/hi",
+   "expect": 0.148,
+   "tol": 0.0005
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "repeat_companies",
+   "expect": 39
+  },
+  {
+   "file": "layoff-repeat-risk/results/metrics.json",
+   "path": "closures_in_v1_denominator",
+   "expect": 12
+  }
+ ]
+}

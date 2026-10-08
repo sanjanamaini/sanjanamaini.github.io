@@ -1,0 +1,84 @@
+{
+ "slug": "pilot",
+ "crumb": "Pilot",
+ "status": "Prototype",
+ "stack": "Python, FastAPI, Chrome MV3, Gemini",
+ "title": "Five LLM agents operate a browser from a plain-English goal, by reading the screen",
+ "hub": "Five LLM agents operate a browser from a plain-English goal, by reading the screen",
+ "description": "Pilot is a working prototype: five Gemini-powered agents that carry out a goal in a real browser by looking at screenshots, with a verifier that triggers replanning.",
+ "standfirst": "Pilot types, clicks and scrolls in a real browser to carry out a goal such as \"Move this lead to Proposal Sent\", purely by looking at screenshots: no per-app API and no brittle page selectors. A verifier agent checks every step and sends a failed one back to the planner. It is a working prototype, and this page says plainly what it does not yet prove.",
+ "facts": [
+  [
+   "Agents",
+   "5"
+  ],
+  [
+   "Reads the screen with",
+   "Gemini vision"
+  ],
+  [
+   "Replans per goal",
+   "up to 3"
+  ],
+  [
+   "Status",
+   "Prototype"
+  ]
+ ],
+ "sections": [
+  {
+   "h": "The question",
+   "p": [
+    "Can an agent operate any web app it can see, with no integration work for each one?"
+   ]
+  },
+  {
+   "h": "The method",
+   "p": [
+    "Five agents run as a loop. A screen interpreter turns a screenshot into structured UI state; a planner breaks the goal into steps; an action agent chooses a click, keystroke or scroll with pixel coordinates; a verifier looks at a fresh screenshot and either passes the step or triggers replanning; a narrator describes each step in the side panel.",
+    "It is built with a FastAPI backend (REST and WebSocket) and a Chrome Manifest V3 side-panel extension that dispatches real mouse and keyboard events through Chrome's debugger protocol. Each agent has its own prompt and returns JSON."
+   ],
+   "figure": {
+    "svg": "pipeline",
+    "caption": "The agent loop, drawn from the code in backend/agents. A failed verification returns to the planner, up to three times per goal."
+   }
+  },
+  {
+   "h": "Reliability so far",
+   "p": [
+    "A code review on 2026-10-07 fixed three faults: replanning had no limit (it is now capped at [[3]] per goal), clicks on scaled displays landed at a multiple of the intended point (the extension now divides by the device pixel ratio), and a click outside the screenshot now fails the step instead of firing. [[11]] tests, with every model call stubbed, cover the loop."
+   ]
+  }
+ ],
+ "limits": [
+  "It is a prototype: session state is in memory, and the Terraform and Docker files are deployment scaffolding, not a verified live deployment.",
+  "There is no measured success rate. The repository holds a reliability model, but every rate in it is an assumption, not a measurement of Pilot.",
+  "That model suggests the verifier sets the ceiling: in a six-step base case, about one run in ten that Pilot reports as complete would be wrong, whatever the replan cap.",
+  "Every step costs a Gemini vision call, and reliability depends on the verifier catching mis-clicks."
+ ],
+ "reproduce": "cd backend && pip install -r requirements.txt\nexport GOOGLE_API_KEY=your_key_here && python main.py\ncd ../extension && npm install && npm run build   # load extension/dist/ unpacked in Chrome",
+ "repo": "Pilot-Visual-Workflow-Agent",
+ "credit": "Built on the Gemini API and Chrome's extension platform.",
+ "copy": [],
+ "og": {
+  "eyebrow": "Pilot · prototype",
+  "big": "Five LLM agents operate a browser from a plain-English goal, by reading the screen",
+  "left": "sanjanamaini.github.io/pilot",
+  "right": "Python · FastAPI · Chrome MV3 · Gemini",
+  "size": 54
+ },
+ "checks": [
+  {
+   "file": "Pilot-Visual-Workflow-Agent/README.md",
+   "contains": "MAX_REPLANS = 3"
+  },
+  {
+   "file": "Pilot-Visual-Workflow-Agent/README.md",
+   "contains": "runs 11 tests"
+  },
+  {
+   "file": "Pilot-Visual-Workflow-Agent/README.md",
+   "contains": "about one run in ten"
+  }
+ ]
+}

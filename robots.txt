@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /links/
+Sitemap: https://sanjanamaini.github.io/sitemap.xml

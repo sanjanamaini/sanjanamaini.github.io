@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About 1 in 10 companies that cut jobs cut again within six months | Sanjana Maini</title>
+<meta name="description" content="17 of 164 companies that announced a layoff cut again within six months. SQL, Power BI and survival analysis on 442 announcements, with the limits stated.">
+<link rel="canonical" href="https://sanjanamaini.github.io/layoff/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Sanjana Maini">
+<meta property="og:title" content="About 1 in 10 companies that cut jobs cut again within six months | Sanjana Maini">
+<meta property="og:description" content="17 of 164 companies that announced a layoff cut again within six months. SQL, Power BI and survival analysis on 442 announcements, with the limits stated.">
+<meta property="og:url" content="https://sanjanamaini.github.io/layoff/">
+<meta property="og:image" content="https://sanjanamaini.github.io/og/layoff.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF8F4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E6B60'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='white'%3ESM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wide">
+  <a class="mark" href="../">Sanjana Maini</a>
+  <nav aria-label="Main"><a href="../#projects">Projects</a><a href="../#about">About</a><a href="../#contact">Contact</a><button class="theme" type="button" id="t" aria-label="Switch light or dark mode">Light / dark</button></nav>
+</div></header>
+<main class="wrap">
+  <p class="crumb"><a href="../#projects">Projects</a> / Layoff repeat-risk</p>
+  <span class="status">Complete &middot; numbers checked 2026-10-08</span>
+  <h1>About 1 in 10 companies that cut jobs cut again within six months</h1>
+  <p class="standfirst">Of 164 companies whose first layoff in the data was at least six months old, <span class="num">17</span> laid people off again inside six months (<span class="num">10.4%</span>). Counting only companies still operating, it is <span class="num">17 of 152</span>, or <span class="num">11.2%</span>, with a 95% interval of <span class="num">7.1% to 17.2%</span>.</p>
+  <dl class="facts">
+    <div><dt>Announcements analysed</dt><dd>442</dd></div>
+    <div><dt>Companies followed six months</dt><dd>164</dd></div>
+    <div><dt>Cut again</dt><dd>17</dd></div>
+    <div><dt>Share</dt><dd>10.4%</dd></div>
+  </dl>
+  <h2><span class="n">01</span>The question</h2>
+  <p>Companies know why they cut jobs, but the people on the other side of the decision cannot ask them whether another round is coming: employees of a company that just announced a layoff, job seekers weighing an offer from it, and lenders. A company does not publish &quot;we will probably cut again&quot;, so the repeat rate is information none of them can get from the company itself.</p>
+  <h2><span class="n">02</span>The data</h2>
+  <p>442 layoff announcements from September 2025 to September 2026, taken from the public layoffs.fyi table by transcribing the site&#x27;s own print view (the site disables bulk download). The raw data is not republished here; the repository holds the queries, the aggregates and a written log of every decision.</p>
+  <h2><span class="n">03</span>The method</h2>
+  <p>Eight saved SQL queries in SQLite. Duplicate reports of one layoff are merged into rounds with a 14-day rule. Every company is followed for the same fixed six months, so a recent layoff cannot drag the rate down. A Power BI dashboard (one-to-many data model, a DAX measure and a company lookup) lets a reader check any company&#x27;s record.</p>
+  <p>The same question is then answered as a survival analysis in Python, which follows all <span class="num">330</span> operating companies until a second round or the end of the data: <span class="num">4.8%</span> by three months and <span class="num">10.2%</span> by six (interval <span class="num">6.9% to 14.8%</span>).</p>
+  <figure>
+    <div class="plate"><img src="../assets/fig/layoff-km.png" width="1102" height="588" alt="Kaplan-Meier curve of the share of companies that cut again, rising from 0 to about 27 percent over 12 months, with the fixed-window estimates at 3, 6 and 9 months close to the curve."></div>
+    <figcaption><strong>Figure.</strong> Share of companies that have cut again, by months since the first layoff round. Line: Kaplan-Meier estimate from every company; band: 95% interval; dots: the fixed-window estimates, each from a different set of companies. Data: results/metrics.json.</figcaption>
+  </figure>
+  <h2><span class="n">04</span>What this does not show</h2>
+  <div class="limits"><ul>
+    <li>Only <span class="num">39</span> companies had a second round, so the data supports &quot;repeat layoffs are fairly common&quot;, not fine comparisons between industries.</li>
+    <li>It shows repeat cuts are common, not that they predict a company failing: there is no outcome data.</li>
+    <li>layoffs.fyi leans toward tech companies and companies that make the news.</li>
+    <li>The window is the last 12 months: a study of company behaviour in this period, not over companies&#x27; whole history.</li>
+  </ul></div>
+  <h2><span class="n">05</span>Which number is the headline</h2>
+  <p>Closed companies cannot cut again, and <span class="num">12</span> of the 164 closed after their first round. The headline, 10.4%, includes them; the 11.2% above excludes them. Both are shown. The rate is unchanged when duplicate reports are merged at 14 or 30 days and lower at 90 days, because 90 days merges real second rounds.</p>
+  <h2><span class="n">06</span>Reproduce it</h2>
+  <pre>python sql/load_layoffs.py   # builds sql/layoffs.db from your copy of the data
+# then run sql/queries/01 to 08 in DB Browser for SQLite</pre>
+  <p class="note">Source and code: <a href="https://github.com/sanjanamaini/layoff-repeat-risk?utm_source=site&amp;utm_medium=project_page&amp;utm_campaign=layoff" data-track="repo" data-project="layoff">repository</a>. Data credit: layoffs.fyi.</p>
+</main>
+<footer class="site"><div class="wrap">
+  <a href="mailto:sanjumaini18@gmail.com" data-track="email">sanjumaini18@gmail.com</a> &middot;
+  <a href="https://www.linkedin.com/in/sanjanamaini/" data-track="linkedin" rel="me">LinkedIn</a> &middot;
+  <a href="../">All projects</a>
+</div></footer>
+<script src="../assets/site.js" defer></script>
+</body></html>
