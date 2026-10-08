@@ -67,7 +67,8 @@
   "big": "Findings first, with the limits stated: data analysis in SQL, Power BI and Python",
   "left": "sanjanamaini.github.io",
   "right": "SQL · Power BI · Python",
-  "size": 62
+  "size": 62,
+  "image": "me.jpg"
  },
  "project_order": [
   "layoff",
@@ -75,5 +76,35 @@
   "withdrawal",
   "fraud",
   "pilot"
+ ],
+ "hero": {
+  "eyebrow": "Data analyst · SQL, Power BI, Python",
+  "name": "Sanjana Maini",
+  "line": "I find the decision inside messy data, and show how sure I am.",
+  "text": "Computer science graduate (AI and ML) looking for data and BI analyst roles, or applied AI and automation roles. Every project below starts with its finding and states what it does not show. When a number turns out wrong, the page says so.",
+  "photo": "assets/me.jpg",
+  "photo_alt": "Portrait of Sanjana Maini"
+ },
+ "proof": [
+  {
+   "v": "1 in 10",
+   "t": "companies that cut jobs cut again within six months",
+   "slug": "layoff"
+  },
+  {
+   "v": "£8.25M",
+   "t": "a wholesaler's real revenue, not £8.91M",
+   "slug": "retail"
+  },
+  {
+   "v": "39.9%",
+   "t": "of students flagged on day 28 withdraw, against 18.6% overall",
+   "slug": "withdrawal"
+  },
+  {
+   "v": "27%",
+   "t": "less fraud cost than the default cut-off",
+   "slug": "fraud"
+  }
  ]
 }

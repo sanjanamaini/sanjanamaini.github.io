@@ -158,5 +158,6 @@
    "file": "Credit-card-fraud-detection/README.md",
    "contains": "0.963 and recall 0.786"
   }
- ]
+ ],
+ "thumb": "fraud-policy-costs.png"
 }

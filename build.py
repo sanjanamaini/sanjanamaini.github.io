@@ -158,15 +158,27 @@ def figure(p, f, r):
 
 # ---------- home page ----------
 def home_page():
-    s = SITE; path = "/"
+    s = SITE; path = "/"; h = s["hero"]
     out = [head("Sanjana Maini | Data analyst: findings, with the limits stated", s["description"], path, "og/home.png"), header(path)]
-    out.append('<main class="wrap">\n')
-    out.append(f'  <h1 class="home">{rich(s["hero_title"])}</h1>\n  <p class="standfirst">{rich(s["hero_text"])}</p>\n')
-    out.append('  <h2 id="projects"><span class="n">01</span>Projects, as findings</h2>\n')
-    out.append('  <table class="hub">\n    <tr><th>Finding</th><th>Status</th><th>Stack</th></tr>\n')
+    out.append('<main>\n<section class="hero wide">\n  <div class="hero-text">\n')
+    out.append(f'    <p class="eyebrow">{esc(h["eyebrow"])}</p>\n    <h1>{esc(h["name"])}</h1>\n    <p class="hero-line">{esc(h["line"])}</p>\n    <p class="hero-p">{esc(h["text"])}</p>\n')
+    out.append(f'    <p class="cta"><a class="btn" href="#projects" data-track="cta_projects">See the projects</a> <a class="btn ghost" href="mailto:{s["email"]}" data-track="email">Email me</a></p>\n')
+    out.append(f'    <p class="elsewhere"><a href="{s["linkedin"]}" data-track="linkedin" rel="me">LinkedIn</a> <a href="{s["github"]}" data-track="github" rel="me">GitHub</a></p>\n  </div>\n')
+    if h.get("photo"):
+        out.append(f'  <figure class="portrait"><img src="{h["photo"]}" width="750" height="1000" alt="{esc(h["photo_alt"])}"></figure>\n')
+    out.append('</section>\n')
+    out.append('<section class="proof wide" aria-label="Headline findings">\n')
+    for q in s["proof"]:
+        out.append(f'  <a href="{q["slug"]}/" data-track="proof" data-project="{q["slug"]}"><span class="pv">{esc(q["v"])}</span><span class="pt">{esc(q["t"])}</span></a>\n')
+    out.append('</section>\n<div class="wide">\n')
+    out.append('  <h2 id="projects"><span class="n">01</span>Projects, as findings</h2>\n</div>\n<section class="cards wide">\n')
     for p in PROJECTS:
-        out.append(f'    <tr><td><a href="{p["slug"]}/" data-track="project" data-project="{p["slug"]}">{rich(p["hub"])}</a></td><td>{esc(p["status"])}</td><td>{esc(p["stack"])}</td></tr>\n')
-    out.append('  </table>\n')
+        if p.get("thumb"):
+            fig = f'<div class="plate"><img src="assets/fig/{p["thumb"]}" alt="" loading="lazy"></div>'
+        else:
+            fig = f'<div class="plate diagram-plate">{PIPELINE_SVG}</div>'
+        out.append(f'  <a class="card-p" href="{p["slug"]}/" data-track="project" data-project="{p["slug"]}">{fig}<span class="meta">{esc(p["status"])} &middot; {esc(p["stack"])}</span><span class="ft">{rich(p["hub"])}</span></a>\n')
+    out.append('</section>\n<div class="wrap">\n')
     out.append('  <h2 id="about"><span class="n">02</span>About</h2>\n')
     out.extend(f'  <p>{rich(t)}</p>\n' for t in s["about"])
     out.append('  <h2><span class="n">03</span>Experience</h2>\n  <dl class="rows">\n')
@@ -178,10 +190,9 @@ def home_page():
     for k, v in s["skills"]:
         out.append(f'    <div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>\n')
     out.append('  </dl>\n')
-    out.append(f'  <p class="note">{esc(s["certifications"])}</p>\n')
-    out.append('  <h2 id="contact"><span class="n">05</span>Contact</h2>\n')
-    out.append(f'  <p>{rich(s["contact_text"])}</p>\n')
-    out.append(f'  <p><a href="mailto:{s["email"]}" data-track="email">{s["email"]}</a> &middot; <a href="{s["linkedin"]}" data-track="linkedin" rel="me">LinkedIn</a> &middot; <a href="{s["github"]}" data-track="github" rel="me">GitHub</a></p>\n')
+    out.append(f'  <p class="note">{esc(s["certifications"])}</p>\n</div>\n')
+    out.append(f'<section class="closing" id="contact"><div class="wrap">\n  <h2>Let us talk</h2>\n  <p>{rich(s["contact_text"])}</p>\n')
+    out.append(f'  <p class="cta"><a class="btn" href="mailto:{s["email"]}" data-track="email">{s["email"]}</a> <a class="btn ghost" href="{s["linkedin"]}" data-track="linkedin" rel="me">LinkedIn</a> <a class="btn ghost" href="{s["github"]}" data-track="github" rel="me">GitHub</a></p>\n</div></section>\n')
     out.append('</main>\n')
     out.append(footer(path))
     return "".join(out)
@@ -245,7 +256,7 @@ print("pages:", ", ".join(pages))
 
 # ---------- link-preview cards (1200x630) ----------
 def card_html(c):
-    fig = f'<div class="thumb"><img src="file://{ROOT}/assets/fig/{c["image"]}"></div>' if c.get("image") else ""
+    fig = f'<div class="thumb"><img src="file://{ROOT}/assets/{"" if c["image"]=="me.jpg" else "fig/"}{c["image"]}"></div>' if c.get("image") else ""
     return f"""<!doctype html><meta charset=utf-8><style>
 *{{box-sizing:border-box;margin:0}}body{{width:1200px;height:630px;background:#FAF8F4;color:#1A1D21;font-family:Georgia,'Times New Roman',serif;padding:64px 72px;display:flex;flex-direction:column;justify-content:space-between;border-left:14px solid #0E6B60}}
 .e{{font:500 24px/1 Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:#0E6B60}}

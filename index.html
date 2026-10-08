@@ -27,18 +27,55 @@
   <a class="mark" href="./">Sanjana Maini</a>
   <nav aria-label="Main"><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a><button class="theme" type="button" id="t" aria-label="Switch light or dark mode">Light / dark</button></nav>
 </div></header>
-<main class="wrap">
-  <h1 class="home">Findings first, with the limits stated</h1>
-  <p class="standfirst">I am a computer science graduate (AI and ML) looking for data and BI analyst roles, or applied AI and automation roles. Each project below starts with its finding, then the question, the data, the method and what it does not show. When a number turns out wrong, the page says so.</p>
+<main>
+<section class="hero wide">
+  <div class="hero-text">
+    <p class="eyebrow">Data analyst · SQL, Power BI, Python</p>
+    <h1>Sanjana Maini</h1>
+    <p class="hero-line">I find the decision inside messy data, and show how sure I am.</p>
+    <p class="hero-p">Computer science graduate (AI and ML) looking for data and BI analyst roles, or applied AI and automation roles. Every project below starts with its finding and states what it does not show. When a number turns out wrong, the page says so.</p>
+    <p class="cta"><a class="btn" href="#projects" data-track="cta_projects">See the projects</a> <a class="btn ghost" href="mailto:sanjumaini18@gmail.com" data-track="email">Email me</a></p>
+    <p class="elsewhere"><a href="https://www.linkedin.com/in/sanjanamaini/" data-track="linkedin" rel="me">LinkedIn</a> <a href="https://github.com/sanjanamaini" data-track="github" rel="me">GitHub</a></p>
+  </div>
+  <figure class="portrait"><img src="assets/me.jpg" width="750" height="1000" alt="Portrait of Sanjana Maini"></figure>
+</section>
+<section class="proof wide" aria-label="Headline findings">
+  <a href="layoff/" data-track="proof" data-project="layoff"><span class="pv">1 in 10</span><span class="pt">companies that cut jobs cut again within six months</span></a>
+  <a href="retail/" data-track="proof" data-project="retail"><span class="pv">£8.25M</span><span class="pt">a wholesaler&#x27;s real revenue, not £8.91M</span></a>
+  <a href="withdrawal/" data-track="proof" data-project="withdrawal"><span class="pv">39.9%</span><span class="pt">of students flagged on day 28 withdraw, against 18.6% overall</span></a>
+  <a href="fraud/" data-track="proof" data-project="fraud"><span class="pv">27%</span><span class="pt">less fraud cost than the default cut-off</span></a>
+</section>
+<div class="wide">
   <h2 id="projects"><span class="n">01</span>Projects, as findings</h2>
-  <table class="hub">
-    <tr><th>Finding</th><th>Status</th><th>Stack</th></tr>
-    <tr><td><a href="layoff/" data-track="project" data-project="layoff">About 1 in 10 companies that cut jobs cut again within six months</a></td><td>Complete</td><td>SQL, Power BI, survival analysis</td></tr>
-    <tr><td><a href="retail/" data-track="project" data-project="retail">A UK wholesaler&#x27;s revenue was <span class="num">£8.25M</span>, not £8.91M: cancellations had been counted as sales</a></td><td>Complete</td><td>Python, pandas, SciPy</td></tr>
-    <tr><td><a href="withdrawal/" data-track="project" data-project="withdrawal">Flagged on day 28, the top 10% of students withdraw at <span class="num">39.9%</span> against <span class="num">18.6%</span> overall</a></td><td>Complete</td><td>Python, scikit-learn, survival analysis</td></tr>
-    <tr><td><a href="fraud/" data-track="project" data-project="fraud">An expected-loss rule cuts fraud cost <span class="num">27%</span> against the default 0.5 cut-off</a></td><td>Complete</td><td>Python, scikit-learn</td></tr>
-    <tr><td><a href="pilot/" data-track="project" data-project="pilot">Five LLM agents operate a browser from a plain-English goal, by reading the screen</a></td><td>Prototype</td><td>Python, FastAPI, Chrome MV3, Gemini</td></tr>
-  </table>
+</div>
+<section class="cards wide">
+  <a class="card-p" href="layoff/" data-track="project" data-project="layoff"><div class="plate"><img src="assets/fig/layoff-km.png" alt="" loading="lazy"></div><span class="meta">Complete &middot; SQL, Power BI, survival analysis</span><span class="ft">About 1 in 10 companies that cut jobs cut again within six months</span></a>
+  <a class="card-p" href="retail/" data-track="project" data-project="retail"><div class="plate"><img src="assets/fig/retail-waterfall.png" alt="" loading="lazy"></div><span class="meta">Complete &middot; Python, pandas, SciPy</span><span class="ft">A UK wholesaler&#x27;s revenue was <span class="num">£8.25M</span>, not £8.91M: cancellations had been counted as sales</span></a>
+  <a class="card-p" href="withdrawal/" data-track="project" data-project="withdrawal"><div class="plate"><img src="assets/fig/withdrawal-day28.png" alt="" loading="lazy"></div><span class="meta">Complete &middot; Python, scikit-learn, survival analysis</span><span class="ft">Flagged on day 28, the top 10% of students withdraw at <span class="num">39.9%</span> against <span class="num">18.6%</span> overall</span></a>
+  <a class="card-p" href="fraud/" data-track="project" data-project="fraud"><div class="plate"><img src="assets/fig/fraud-policy-costs.png" alt="" loading="lazy"></div><span class="meta">Complete &middot; Python, scikit-learn</span><span class="ft">An expected-loss rule cuts fraud cost <span class="num">27%</span> against the default 0.5 cut-off</span></a>
+  <a class="card-p" href="pilot/" data-track="project" data-project="pilot"><div class="plate diagram-plate"><svg viewBox="0 0 760 250" role="img" aria-labelledby="pt pd" class="diagram">
+<title id="pt">The Pilot agent loop</title>
+<desc id="pd">A goal and a screenshot go to a screen interpreter, then a planner, then an action agent that acts in the browser; a verifier checks a fresh screenshot and either sends the run back to the planner or on to the narrator.</desc>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
+<g font-family="var(--sans)" font-size="14" fill="var(--ink)">
+<g stroke="var(--rule)" fill="var(--surface)" stroke-width="1.2">
+<rect x="10" y="40" width="130" height="56" rx="6"/><rect x="170" y="40" width="130" height="56" rx="6"/>
+<rect x="330" y="40" width="130" height="56" rx="6"/><rect x="490" y="40" width="120" height="56" rx="6"/>
+<rect x="630" y="40" width="120" height="56" rx="6"/></g>
+<g text-anchor="middle"><text x="75" y="64">Screen</text><text x="75" y="82">interpreter</text>
+<text x="235" y="73">Planner</text><text x="395" y="64">Action</text><text x="395" y="82">agent</text>
+<text x="550" y="73">Verifier</text><text x="690" y="73">Narrator</text></g>
+<g stroke="var(--muted)" stroke-width="1.5" fill="none" marker-end="url(#ar)">
+<path d="M140 68H168"/><path d="M300 68H328"/><path d="M460 68H488"/><path d="M610 68H628"/></g>
+<path d="M550 98V170H235V100" stroke="var(--accent)" stroke-width="1.5" fill="none" marker-end="url(#ar)" stroke-dasharray="5 4"/>
+<text x="392" y="190" text-anchor="middle" fill="var(--accent)" font-size="13">failed check: replan (capped at 3 per goal)</text>
+<text x="75" y="130" text-anchor="middle" fill="var(--muted)" font-size="12">screenshot in</text>
+<text x="395" y="130" text-anchor="middle" fill="var(--muted)" font-size="12">click, type, scroll</text>
+<text x="550" y="130" text-anchor="middle" fill="var(--muted)" font-size="12">fresh screenshot</text>
+<text x="10" y="232" fill="var(--muted)" font-size="12">Goal in plain English, in a Chrome side panel. Gemini vision reads every screenshot.</text>
+</g></svg></div><span class="meta">Prototype &middot; Python, FastAPI, Chrome MV3, Gemini</span><span class="ft">Five LLM agents operate a browser from a plain-English goal, by reading the screen</span></a>
+</section>
+<div class="wrap">
   <h2 id="about"><span class="n">02</span>About</h2>
   <p>B.Tech in Computer Science and Engineering (AI and ML), SRM University AP, 2021 to 2025. I work on the seam between data and decisions: SQL, Power BI and Python on real datasets, evaluated the way the decision will actually be made.</p>
   <p>I also build systems that act on decisions: Pilot, a five-agent prototype that operates a browser from a plain-English goal. Based in Vijayawada; open to Gurugram, Bengaluru, Hyderabad, Mumbai or remote work. Available from December 2026.</p>
@@ -59,9 +96,12 @@
     <div><dt>Methods</dt><dd>time-based validation, leakage testing, empirical Bayes, survival analysis, expected-loss decision rules</dd></div>
   </dl>
   <p class="note">Product Matters 5.0, E-Cell IIT Guwahati (Certificate of Merit, top 15%). NPTEL Foundations of R Software, IIT Kanpur (Elite + Gold, 94%). Data Analytics Job Simulation, Deloitte (Forage). IBM Exploratory Data Analysis for Machine Learning. Google Foundations of Project Management.</p>
-  <h2 id="contact"><span class="n">05</span>Contact</h2>
+</div>
+<section class="closing" id="contact"><div class="wrap">
+  <h2>Let us talk</h2>
   <p>Open to data and BI analyst roles and applied AI or automation roles, in Gurugram, Bengaluru, Hyderabad, Mumbai or remote. The quickest way to reach me is email.</p>
-  <p><a href="mailto:sanjumaini18@gmail.com" data-track="email">sanjumaini18@gmail.com</a> &middot; <a href="https://www.linkedin.com/in/sanjanamaini/" data-track="linkedin" rel="me">LinkedIn</a> &middot; <a href="https://github.com/sanjanamaini" data-track="github" rel="me">GitHub</a></p>
+  <p class="cta"><a class="btn" href="mailto:sanjumaini18@gmail.com" data-track="email">sanjumaini18@gmail.com</a> <a class="btn ghost" href="https://www.linkedin.com/in/sanjanamaini/" data-track="linkedin" rel="me">LinkedIn</a> <a class="btn ghost" href="https://github.com/sanjanamaini" data-track="github" rel="me">GitHub</a></p>
+</div></section>
 </main>
 <footer class="site"><div class="wrap">
   <a href="mailto:sanjumaini18@gmail.com" data-track="email">sanjumaini18@gmail.com</a> &middot;
