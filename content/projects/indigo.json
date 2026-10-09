@@ -1,0 +1,237 @@
+{
+ "slug": "indigo",
+ "crumb": "When IndiGo broke",
+ "status": "Complete",
+ "stack": "Python, SQL, dbt, DuckDB",
+ "title": "When IndiGo broke, about [[2.1 million]] passengers simply did not fly",
+ "hub": "When IndiGo broke, about [[2.1 million]] passengers simply did not fly",
+ "description": "IndiGo's December 2025 meltdown, measured: 1.88 million passengers short of the season, none taken by rivals, and routes it flew alone fell twice as far and stayed behind. DGCA data, a route network rebuilt from Wikipedia, dbt on DuckDB.",
+ "standfirst": "In December 2025, when its crew rostering collapsed, IndiGo carried [[1.88 million]] fewer passengers than the season predicted. Other airlines carried [[0.23 million]] fewer than their own norm, so about [[2.1 million]] people did not fly at all. Routes where IndiGo was the only airline listed fell [[15.6]] points against their own trend, against [[8.3]] on routes it shared, and were still [[8.0]] points behind on average from February to July 2026. By July, IndiGo held a record [[67.4%]] of the market.",
+ "facts": [
+  [
+   "Passengers short, December 2025",
+   "1.88 million"
+  ],
+  [
+   "Did not fly",
+   "about 2.1 million"
+  ],
+  [
+   "Fall on IndiGo-only routes",
+   "15.6 points (shared: 8.3)"
+  ],
+  [
+   "IndiGo share, July 2026",
+   "67.4%"
+  ]
+ ],
+ "sections": [
+  {
+   "h": "The question",
+   "p": [
+    "When India's biggest airline cancelled thousands of flights in early December 2025, where did its passengers go? Which routes were hurt most, how long did it last, and who came out stronger?",
+    "The hard part is the data. DGCA publishes passengers per route (all airlines together) and per airline (all routes together), never per route and airline. Nobody can read off how many passengers IndiGo carried on a route, or which routes had no other airline."
+   ]
+  },
+  {
+   "h": "The data",
+   "p": [
+    "Monthly route and airline statistics from DGCA, through the open compilation india-aviation-traffic, pinned to one version and checked against three of DGCA's own workbooks: every row and total matches. Daily departures, passengers and on-time rates come from the Ministry of Civil Aviation. DGCA renamed dozens of cities in January 2026; a mapping table repairs each one, so no route appears to vanish the month after the crisis.",
+    "Who flew which route was rebuilt from [[136]] Wikipedia airport articles, each read as it stood at 23:59 UTC on 30 November 2025, with its revision id recorded. Checked against DGCA traffic, the network contains every route with [[3,000+]] monthly passengers."
+   ]
+  },
+  {
+   "h": "Where the passengers went",
+   "p": [
+    "Expected December traffic for each airline is its November 2025 traffic times its usual December rise (2022 to 2024). IndiGo was [[1.88 million]] short. Rivals did not fill the gap: the Tata group's December seat-km fell [[0.2%]] from November, when it usually rises [[5.7%]], and Akasa's planes were already [[95.3%]] full."
+   ],
+   "figure": {
+    "file": "indigo-national.png",
+    "w": 1017,
+    "h": 544,
+    "alt": "Left: bars of expected and actual December 2025 passengers for IndiGo and for all other airlines, both below expected. Right: seat-km added for December against each airline's usual; IndiGo cut seats and the Tata group and Akasa added none.",
+    "caption": "Left: expected and actual December 2025 passengers. Right: seats added for December against each airline's usual (2022 to 2024). Data: results/numbers.json."
+   }
+  },
+  {
+   "h": "Which routes were hurt, and for how long",
+   "p": [
+    "Each route is compared with itself: December 2025 growth on a year earlier, minus its own October to November growth. On routes where IndiGo was the only airline listed, traffic fell [[15.6]] points; on routes it shared, [[8.3]]. The same test on December 2024, when nothing happened, shows no gap, and the plan was committed before any December result was computed.",
+    "The gap did not close. From February to July 2026 the IndiGo-only routes ran [[8.0]] points behind shared routes on average. In [[14]] cities with 20,000+ monthly passengers, most travellers were on routes with no second airline listed."
+   ],
+   "figure": {
+    "file": "indigo-recovery.png",
+    "w": 1005,
+    "h": 714,
+    "alt": "Top: monthly growth against each route's own trend for IndiGo-only and shared routes, June 2025 to July 2026, both falling in December and IndiGo-only routes staying lower. Bottom: the monthly gap between them, negative from December on.",
+    "caption": "Growth against each route's own October to November 2025 trend, with 95% bands; below, the gap between the two groups. May 2026 looks better only because 32 airports were shut in May 2025, the month it is compared with."
+   }
+  },
+  {
+   "h": "Who came out stronger",
+   "p": [
+    "IndiGo's share of domestic passengers fell to [[59.6%]] in December 2025, then reached [[67.4%]] in July 2026, the highest in DGCA data since 2015. The airline that broke ended the period bigger.",
+    "Under the findings: Python for the downloads and the Wikipedia parser, a dbt warehouse on DuckDB with [[18]] data tests, and every number in the report generated from one results file."
+   ],
+   "figure": {
+    "file": "indigo-share.png",
+    "w": 1026,
+    "h": 442,
+    "alt": "Line chart of IndiGo's monthly share of domestic passengers and market concentration since 2019, dipping in December 2025 and reaching a record in July 2026.",
+    "caption": "IndiGo's monthly share of India's domestic passengers (solid) and market concentration, HHI (dashed). Data: DGCA via india-aviation-traffic."
+   }
+  }
+ ],
+ "limits": [
+  "Who flew each route comes from public airport listings, not airline schedules. Current listings show a rival on [[2]] of the [[3]] largest IndiGo-only routes, so the groups blur and the measured gap is, if anything, too small.",
+  "Monthly data cannot isolate the worst week, and the daily archive is missing 4 to 6 December.",
+  "There are no fare data: the December fare caps are context, not measured.",
+  "2026 had other shocks, including higher fuel prices and IndiGo's 10% schedule cut to March. Comparing route groups with each other removes what hit the whole market, not what hit them differently."
+ ],
+ "changes": {
+  "h": "Checks and corrections",
+  "p": [
+   "Two bugs found by tests during the build and three reproducibility gaps found in a later review are logged with their effects; none changed a finding. Two fresh rebuilds give byte-identical files."
+  ]
+ },
+ "reproduce": "make setup\nmake all      # every step, including dbt with 18 tests\nmake report   # the report and memo PDFs",
+ "repo": null,
+ "repo_note": "The code repository is not public yet.",
+ "docs": [
+  {
+   "label": "Full report (PDF, 9 pages)",
+   "file": "indigo-report.pdf"
+  },
+  {
+   "label": "One-page memo (PDF)",
+   "file": "indigo-memo.pdf"
+  }
+ ],
+ "credit": "Data credit: DGCA and the Ministry of Civil Aviation via india-aviation-traffic (ODbL); Wikipedia airport articles (CC BY-SA); OurAirports.",
+ "copy": [
+  {
+   "from": "indigo-meltdown/results/figures/fig2_national.png",
+   "to": "indigo-national.png"
+  },
+  {
+   "from": "indigo-meltdown/results/figures/fig4_recovery.png",
+   "to": "indigo-recovery.png"
+  },
+  {
+   "from": "indigo-meltdown/results/figures/fig5_concentration.png",
+   "to": "indigo-share.png"
+  },
+  {
+   "from": "indigo-meltdown/results/figures/fig0_network_map.png",
+   "to": "indigo-map.png"
+  },
+  {
+   "from": "indigo-meltdown/report/Indigo_report.pdf",
+   "dest": "assets/doc/indigo-report.pdf"
+  },
+  {
+   "from": "indigo-meltdown/report/memo.pdf",
+   "dest": "assets/doc/indigo-memo.pdf"
+  }
+ ],
+ "og": {
+  "eyebrow": "When IndiGo broke · Python, dbt, DuckDB",
+  "big": "When IndiGo broke, about 2.1 million passengers simply did not fly",
+  "left": "sanjanamaini.github.io/indigo",
+  "right": "1.88M short · rivals took none",
+  "image": "indigo-map.png",
+  "size": 50
+ },
+ "checks": [
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "q1_indigo_shortfall",
+   "expect": 1880000,
+   "tol": 5000
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "q1_rival_gain",
+   "expect": -230000,
+   "tol": 5000
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "q1_market_lost",
+   "expect": 2100000,
+   "tol": 50000
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "h_mean_indigo_only",
+   "expect": -0.156,
+   "tol": 0.0005
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "h_mean_indigo_and_rivals",
+   "expect": -0.083,
+   "tol": 0.0005
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "gap_feb_jul_2026_mean",
+   "expect": -0.08,
+   "tol": 0.0005
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "q4_indigo_share_max",
+   "expect": 0.674,
+   "tol": 0.0005
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "q4_indigo_share_2025-12",
+   "expect": 0.596,
+   "tol": 0.0005
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "q1_tata_seatkm_dec_over_nov_2025",
+   "expect": 0.998,
+   "tol": 0.0005
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "q1_tata_seatkm_dec_over_nov_2022_2024",
+   "expect": 1.057,
+   "tol": 0.0005
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "q1_akasa_lf_dec_2025",
+   "expect": 95.3,
+   "tol": 0.05
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "net2025_recall_ge_3000",
+   "expect": 1.0
+  },
+  {
+   "file": "indigo-meltdown/results/numbers.json",
+   "path": "q5_metros_majority_indigo_only",
+   "expect": 14
+  },
+  {
+   "file": "indigo-meltdown/data/interim/network_summary.json",
+   "path": "0/articles",
+   "expect": 136
+  },
+  {
+   "file": "indigo-meltdown/README.md",
+   "contains": "18 data tests"
+  },
+  {
+   "file": "indigo-meltdown/docs/VALIDATION.md",
+   "contains": "Hyderabad - Kolkata"
+  }
+ ],
+ "thumb": "indigo-map.png"
+}

@@ -143,8 +143,13 @@ def project_page(p):
         out.extend(f'  <p>{rich(t)}</p>\n' for t in p["changes"]["p"])
     out.append(h2("Reproduce it"))
     out.append(f'  <pre>{esc(p["reproduce"])}</pre>\n')
-    repo = p["repo"]
-    out.append(f'  <p class="note">Source and code: <a href="https://github.com/sanjanamaini/{repo}?utm_source=site&amp;utm_medium=project_page&amp;utm_campaign={slug}" data-track="repo" data-project="{slug}">repository</a>. {esc(p["credit"])}</p>\n')
+    docs = " ".join(f'<a href="{r}assets/doc/{d["file"]}" data-track="doc" data-project="{slug}">{esc(d["label"])}</a>.'
+                    for d in p.get("docs", []))
+    if p.get("repo"):
+        repo = p["repo"]
+        out.append(f'  <p class="note">Source and code: <a href="https://github.com/sanjanamaini/{repo}?utm_source=site&amp;utm_medium=project_page&amp;utm_campaign={slug}" data-track="repo" data-project="{slug}">repository</a>. {docs} {esc(p["credit"])}</p>\n')
+    else:
+        out.append(f'  <p class="note">{docs} {esc(p.get("repo_note", ""))} {esc(p["credit"])}</p>\n')
     out.append("</main>\n")
     out.append(footer(path))
     return "".join(out)
@@ -241,7 +246,9 @@ print(f"verified {sum(len(p.get('checks', [])) for p in PROJECTS)} checks" if VE
 
 for p in PROJECTS:
     for f in p.get("copy", []):
-        src = os.path.join(GH, f["from"]); dst = os.path.join(ROOT, "assets/fig", f["to"])
+        src = os.path.join(GH, f["from"])
+        dst = os.path.join(ROOT, f["dest"]) if f.get("dest") else os.path.join(ROOT, "assets/fig", f["to"])
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
         shutil.copyfile(src, dst)
     write(f'/{p["slug"]}/', project_page(p))
 write("/", home_page())

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>When IndiGo broke, about 2.1 million passengers simply did not fly | Sanjana Maini</title>
+<meta name="description" content="IndiGo&#x27;s December 2025 meltdown, measured: 1.88 million passengers short of the season, none taken by rivals, and routes it flew alone fell twice as far and stayed behind. DGCA data, a route network rebuilt from Wikipedia, dbt on DuckDB.">
+<link rel="canonical" href="https://sanjanamaini.github.io/indigo/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Sanjana Maini">
+<meta property="og:title" content="When IndiGo broke, about 2.1 million passengers simply did not fly | Sanjana Maini">
+<meta property="og:description" content="IndiGo&#x27;s December 2025 meltdown, measured: 1.88 million passengers short of the season, none taken by rivals, and routes it flew alone fell twice as far and stayed behind. DGCA data, a route network rebuilt from Wikipedia, dbt on DuckDB.">
+<meta property="og:url" content="https://sanjanamaini.github.io/indigo/">
+<meta property="og:image" content="https://sanjanamaini.github.io/og/indigo.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FAF8F4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E6B60'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='700' text-anchor='middle' fill='white'%3ESM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-26Z4TV16K4"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-26Z4TV16K4");</script>
+</head>
+<body>
+<header class="site"><div class="wide">
+  <a class="mark" href="../">Sanjana Maini</a>
+  <nav aria-label="Main"><a href="../#projects">Projects</a><a href="../#about">About</a><a href="../#contact">Contact</a><button class="theme" type="button" id="t" aria-label="Switch light or dark mode">Light / dark</button></nav>
+</div></header>
+<main class="wrap">
+  <p class="crumb"><a href="../#projects">Projects</a> / When IndiGo broke</p>
+  <span class="status">Complete &middot; numbers checked 2026-10-08</span>
+  <h1>When IndiGo broke, about <span class="num">2.1 million</span> passengers simply did not fly</h1>
+  <p class="standfirst">In December 2025, when its crew rostering collapsed, IndiGo carried <span class="num">1.88 million</span> fewer passengers than the season predicted. Other airlines carried <span class="num">0.23 million</span> fewer than their own norm, so about <span class="num">2.1 million</span> people did not fly at all. Routes where IndiGo was the only airline listed fell <span class="num">15.6</span> points against their own trend, against <span class="num">8.3</span> on routes it shared, and were still <span class="num">8.0</span> points behind on average from February to July 2026. By July, IndiGo held a record <span class="num">67.4%</span> of the market.</p>
+  <dl class="facts">
+    <div><dt>Passengers short, December 2025</dt><dd>1.88 million</dd></div>
+    <div><dt>Did not fly</dt><dd>about 2.1 million</dd></div>
+    <div><dt>Fall on IndiGo-only routes</dt><dd>15.6 points (shared: 8.3)</dd></div>
+    <div><dt>IndiGo share, July 2026</dt><dd>67.4%</dd></div>
+  </dl>
+  <h2><span class="n">01</span>The question</h2>
+  <p>When India&#x27;s biggest airline cancelled thousands of flights in early December 2025, where did its passengers go? Which routes were hurt most, how long did it last, and who came out stronger?</p>
+  <p>The hard part is the data. DGCA publishes passengers per route (all airlines together) and per airline (all routes together), never per route and airline. Nobody can read off how many passengers IndiGo carried on a route, or which routes had no other airline.</p>
+  <h2><span class="n">02</span>The data</h2>
+  <p>Monthly route and airline statistics from DGCA, through the open compilation india-aviation-traffic, pinned to one version and checked against three of DGCA&#x27;s own workbooks: every row and total matches. Daily departures, passengers and on-time rates come from the Ministry of Civil Aviation. DGCA renamed dozens of cities in January 2026; a mapping table repairs each one, so no route appears to vanish the month after the crisis.</p>
+  <p>Who flew which route was rebuilt from <span class="num">136</span> Wikipedia airport articles, each read as it stood at 23:59 UTC on 30 November 2025, with its revision id recorded. Checked against DGCA traffic, the network contains every route with <span class="num">3,000+</span> monthly passengers.</p>
+  <h2><span class="n">03</span>Where the passengers went</h2>
+  <p>Expected December traffic for each airline is its November 2025 traffic times its usual December rise (2022 to 2024). IndiGo was <span class="num">1.88 million</span> short. Rivals did not fill the gap: the Tata group&#x27;s December seat-km fell <span class="num">0.2%</span> from November, when it usually rises <span class="num">5.7%</span>, and Akasa&#x27;s planes were already <span class="num">95.3%</span> full.</p>
+  <figure>
+    <div class="plate"><img src="../assets/fig/indigo-national.png" width="1017" height="544" alt="Left: bars of expected and actual December 2025 passengers for IndiGo and for all other airlines, both below expected. Right: seat-km added for December against each airline&#x27;s usual; IndiGo cut seats and the Tata group and Akasa added none."></div>
+    <figcaption><strong>Figure.</strong> Left: expected and actual December 2025 passengers. Right: seats added for December against each airline&#x27;s usual (2022 to 2024). Data: results/numbers.json.</figcaption>
+  </figure>
+  <h2><span class="n">04</span>Which routes were hurt, and for how long</h2>
+  <p>Each route is compared with itself: December 2025 growth on a year earlier, minus its own October to November growth. On routes where IndiGo was the only airline listed, traffic fell <span class="num">15.6</span> points; on routes it shared, <span class="num">8.3</span>. The same test on December 2024, when nothing happened, shows no gap, and the plan was committed before any December result was computed.</p>
+  <p>The gap did not close. From February to July 2026 the IndiGo-only routes ran <span class="num">8.0</span> points behind shared routes on average. In <span class="num">14</span> cities with 20,000+ monthly passengers, most travellers were on routes with no second airline listed.</p>
+  <figure>
+    <div class="plate"><img src="../assets/fig/indigo-recovery.png" width="1005" height="714" alt="Top: monthly growth against each route&#x27;s own trend for IndiGo-only and shared routes, June 2025 to July 2026, both falling in December and IndiGo-only routes staying lower. Bottom: the monthly gap between them, negative from December on."></div>
+    <figcaption><strong>Figure.</strong> Growth against each route&#x27;s own October to November 2025 trend, with 95% bands; below, the gap between the two groups. May 2026 looks better only because 32 airports were shut in May 2025, the month it is compared with.</figcaption>
+  </figure>
+  <h2><span class="n">05</span>Who came out stronger</h2>
+  <p>IndiGo&#x27;s share of domestic passengers fell to <span class="num">59.6%</span> in December 2025, then reached <span class="num">67.4%</span> in July 2026, the highest in DGCA data since 2015. The airline that broke ended the period bigger.</p>
+  <p>Under the findings: Python for the downloads and the Wikipedia parser, a dbt warehouse on DuckDB with <span class="num">18</span> data tests, and every number in the report generated from one results file.</p>
+  <figure>
+    <div class="plate"><img src="../assets/fig/indigo-share.png" width="1026" height="442" alt="Line chart of IndiGo&#x27;s monthly share of domestic passengers and market concentration since 2019, dipping in December 2025 and reaching a record in July 2026."></div>
+    <figcaption><strong>Figure.</strong> IndiGo&#x27;s monthly share of India&#x27;s domestic passengers (solid) and market concentration, HHI (dashed). Data: DGCA via india-aviation-traffic.</figcaption>
+  </figure>
+  <h2><span class="n">06</span>What this does not show</h2>
+  <div class="limits"><ul>
+    <li>Who flew each route comes from public airport listings, not airline schedules. Current listings show a rival on <span class="num">2</span> of the <span class="num">3</span> largest IndiGo-only routes, so the groups blur and the measured gap is, if anything, too small.</li>
+    <li>Monthly data cannot isolate the worst week, and the daily archive is missing 4 to 6 December.</li>
+    <li>There are no fare data: the December fare caps are context, not measured.</li>
+    <li>2026 had other shocks, including higher fuel prices and IndiGo&#x27;s 10% schedule cut to March. Comparing route groups with each other removes what hit the whole market, not what hit them differently.</li>
+  </ul></div>
+  <h2><span class="n">07</span>Checks and corrections</h2>
+  <p>Two bugs found by tests during the build and three reproducibility gaps found in a later review are logged with their effects; none changed a finding. Two fresh rebuilds give byte-identical files.</p>
+  <h2><span class="n">08</span>Reproduce it</h2>
+  <pre>make setup
+make all      # every step, including dbt with 18 tests
+make report   # the report and memo PDFs</pre>
+  <p class="note"><a href="../assets/doc/indigo-report.pdf" data-track="doc" data-project="indigo">Full report (PDF, 9 pages)</a>. <a href="../assets/doc/indigo-memo.pdf" data-track="doc" data-project="indigo">One-page memo (PDF)</a>. The code repository is not public yet. Data credit: DGCA and the Ministry of Civil Aviation via india-aviation-traffic (ODbL); Wikipedia airport articles (CC BY-SA); OurAirports.</p>
+</main>
+<footer class="site"><div class="wrap">
+  <a href="mailto:sanjumaini18@gmail.com" data-track="email">sanjumaini18@gmail.com</a> &middot;
+  <a href="https://www.linkedin.com/in/sanjanamaini/" data-track="linkedin" rel="me">LinkedIn</a> &middot;
+  <a href="../">All projects</a>
+</div></footer>
+<script src="../assets/site.js" defer></script>
+</body></html>
