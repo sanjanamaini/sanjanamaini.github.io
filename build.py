@@ -51,7 +51,12 @@ def head(title, desc, path, og_image=None, article=False):
         g = SITE["ga_measurement_id"]
         ga = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={g}"></script>\n'
               f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}'
-              f'gtag("js",new Date());gtag("config","{g}");</script>\n')
+              f'gtag("js",new Date());var c={{}};'
+              # her own visits: open any page once with ?me=1 on each browser (?me=0 undoes it); GA's Internal
+              # Traffic filter then drops them, so the numbers show other people only
+              f'try{{var q=location.search;if(/[?&]me=1/.test(q))localStorage.setItem("sm_me","1");'
+              f'if(/[?&]me=0/.test(q))localStorage.removeItem("sm_me");if(localStorage.getItem("sm_me")==="1")c.traffic_type="internal"}}catch(e){{}}'
+              f'gtag("config","{g}",c);</script>\n')
     return f"""<!doctype html>
 <html lang="en">
 <head>
